@@ -31,6 +31,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 @property (nonatomic, weak) IBOutlet UIButton *cameraButton;
 @property (nonatomic, weak) IBOutlet UIButton *stillButton;
 @property (weak, nonatomic) IBOutlet UILabel *crossHairLabel;
+@property (weak, nonatomic) IBOutlet UIView *statusBarIndicator;
 
 // Session management.
 @property (nonatomic) dispatch_queue_t sessionQueue;
@@ -637,6 +638,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 	// Enable the Record button to let the user stop the recording.
 	dispatch_async( dispatch_get_main_queue(), ^{
         [self setPreviewImageViewClear];
+//        self.statusBarIndicator.backgroundColor = [UIColor colorWithRed:0.5 green:0.1 blue:0 alpha:0.5];
 		self.recordButton.enabled = YES;
 		[self.recordButton setTitle:NSLocalizedString( @"Stop", @"Recording button stop title") forState:UIControlStateNormal];
 	});
@@ -700,6 +702,8 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 	// Enable the Camera and Record buttons to let the user switch camera and start another recording.
 	dispatch_async( dispatch_get_main_queue(), ^{
         [self setPreviewImageViewVague];
+//        self.statusBarIndicator.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+
 		// Only enable the ability to change camera if the device has more than one camera.
 		self.cameraButton.enabled = ( [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo].count > 1 );
 		self.recordButton.enabled = YES;
@@ -723,13 +727,6 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 - (void) touchesMoved:(NSSet *)touches
             withEvent:(UIEvent *)event {
     
-    _elapsedTime = CACurrentMediaTime() - _startTime;
-    
-    if (_elapsedTime > 0.5 && _startTime != 0) {
-        [self setPreviewImageViewClear];
-        _startTime = 0;
-    }
-    
 }
 
 - (void) touchesEnded:(NSSet *)touches
@@ -746,11 +743,16 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     
     //    NSLog(@"moved distance %.0f",distance);
     
-    if (distance <= 10.0) {
+    _elapsedTime = CACurrentMediaTime() - _startTime;
+
+    if (yDist >= 20.0 && distance <= 100 && _elapsedTime > 1.0 && (self.movieFileOutput.isRecording == NO)) {
+        [self setPreviewImageViewClear];
         [self toggleMovieRecording:nil];
-    } else {
-        [self setPreviewImageViewVague];
     }
+    if (self.movieFileOutput.isRecording == YES) {
+        [self toggleMovieRecording:nil];
+    }
+
 }
 
 - (void)setPreviewImageViewClear {

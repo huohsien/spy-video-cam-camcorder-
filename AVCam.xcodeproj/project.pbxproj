@@ -13,7 +13,6 @@
 		220626881A1E345E00A45150 /* AAPLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 220626831A1E345E00A45150 /* AAPLAppDelegate.m */; };
 		220626891A1E345E00A45150 /* AAPLPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 220626851A1E345E00A45150 /* AAPLPreviewView.m */; };
 		2206268A1A1E345E00A45150 /* AAPLCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 220626871A1E345E00A45150 /* AAPLCameraViewController.m */; };
-		22CA31B81B022D1300D2DE70 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22CA31B61B022D1300D2DE70 /* Launch Screen.storyboard */; };
 		6652F1651BEC6C6D001F9177 /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6652F1641BEC6C6D001F9177 /* bg@2x.png */; };
 /* End PBXBuildFile section */
 
@@ -29,7 +28,6 @@
 		220626851A1E345E00A45150 /* AAPLPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLPreviewView.m; sourceTree = "<group>"; };
 		220626861A1E345E00A45150 /* AAPLCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLCameraViewController.h; sourceTree = "<group>"; };
 		220626871A1E345E00A45150 /* AAPLCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLCameraViewController.m; sourceTree = "<group>"; };
-		22CA31B71B022D1300D2DE70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "AVCam/Base.lproj/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		22CA31B91B0250C300D2DE70 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6652F1641BEC6C6D001F9177 /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,7 +70,6 @@
 				220626851A1E345E00A45150 /* AAPLPreviewView.m */,
 				220626861A1E345E00A45150 /* AAPLCameraViewController.h */,
 				220626871A1E345E00A45150 /* AAPLCameraViewController.m */,
-				22CA31B61B022D1300D2DE70 /* Launch Screen.storyboard */,
 				220626661A1E330400A45150 /* Main.storyboard */,
 				220626691A1E330400A45150 /* Images.xcassets */,
 				2206265C1A1E330400A45150 /* Supporting Files */,
@@ -153,7 +150,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22CA31B81B022D1300D2DE70 /* Launch Screen.storyboard in Resources */,
 				220626681A1E330400A45150 /* Main.storyboard in Resources */,
 				2206266A1A1E330400A45150 /* Images.xcassets in Resources */,
 				6652F1651BEC6C6D001F9177 /* bg@2x.png in Resources */,
@@ -183,15 +179,6 @@
 				220626671A1E330400A45150 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		22CA31B61B022D1300D2DE70 /* Launch Screen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				22CA31B71B022D1300D2DE70 /* Base */,
-			);
-			name = "Launch Screen.storyboard";
-			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
