@@ -471,6 +471,15 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 	} );
 }
 
+- (NSString *)documentsPathForFileName:(NSString *)name
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    
+    return [documentsPath stringByAppendingPathComponent:name];
+}
+
+
 - (IBAction)toggleMovieRecording:(id)sender
 {
 	// Disable the Camera button until recording finishes, and disable the Record button until recording starts or finishes. See the
@@ -498,8 +507,11 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 			[AAPLCameraViewController setFlashMode:AVCaptureFlashModeOff forDevice:self.videoDeviceInput.device];
 
 			// Start recording to a temporary file.
-			NSString *outputFileName = [NSProcessInfo processInfo].globallyUniqueString;
-			NSString *outputFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[outputFileName stringByAppendingPathExtension:@"mov"]];
+//			NSString *outputFileName = [NSProcessInfo processInfo].globallyUniqueString;
+//			NSString *outputFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[outputFileName stringByAppendingPathExtension:@"mov"]];
+            
+            NSString * timestampString = [NSString stringWithFormat:@"%.0f",[[NSDate date] timeIntervalSince1970]*1000000];
+            NSString *outputFilePath = [self documentsPathForFileName:[NSString stringWithFormat:@"%@.mov",timestampString]]; //Add the file name
 			[self.movieFileOutput startRecordingToOutputFileURL:[NSURL fileURLWithPath:outputFilePath] recordingDelegate:self];
 		}
 		else {
@@ -636,6 +648,9 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 	CGPoint devicePoint = [(AVCaptureVideoPreviewLayer *)self.previewView.layer captureDevicePointOfInterestForPoint:[gestureRecognizer locationInView:gestureRecognizer.view]];
 	[self focusWithMode:AVCaptureFocusModeAutoFocus exposeWithMode:AVCaptureExposureModeAutoExpose atDevicePoint:devicePoint monitorSubjectAreaChange:YES];
 }
+- (IBAction)exitButtonPressed:(id)sender {
+    exit(1);
+}
 
 #pragma mark File Output Recording Delegate
 
@@ -660,10 +675,10 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 	self.backgroundRecordingID = UIBackgroundTaskInvalid;
 
 	dispatch_block_t cleanup = ^{
-		[[NSFileManager defaultManager] removeItemAtURL:outputFileURL error:nil];
-		if ( currentBackgroundRecordingID != UIBackgroundTaskInvalid ) {
-			[[UIApplication sharedApplication] endBackgroundTask:currentBackgroundRecordingID];
-		}
+//		[[NSFileManager defaultManager] removeItemAtURL:outputFileURL error:nil];
+//		if ( currentBackgroundRecordingID != UIBackgroundTaskInvalid ) {
+//			[[UIApplication sharedApplication] endBackgroundTask:currentBackgroundRecordingID];
+//		}
 	};
 
 	BOOL success = YES;
@@ -674,32 +689,32 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 	}
 	if ( success ) {
 		// Check authorization status.
-		[PHPhotoLibrary requestAuthorization:^( PHAuthorizationStatus status ) {
-			if ( status == PHAuthorizationStatusAuthorized ) {
-				// Save the movie file to the photo library and cleanup.
-				[[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-					// In iOS 9 and later, it's possible to move the file into the photo library without duplicating the file data.
-					// This avoids using double the disk space during save, which can make a difference on devices with limited free disk space.
-					if ( [PHAssetResourceCreationOptions class] ) {
-						PHAssetResourceCreationOptions *options = [[PHAssetResourceCreationOptions alloc] init];
-						options.shouldMoveFile = YES;
-						PHAssetCreationRequest *changeRequest = [PHAssetCreationRequest creationRequestForAsset];
-						[changeRequest addResourceWithType:PHAssetResourceTypeVideo fileURL:outputFileURL options:options];
-					}
-					else {
-						[PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:outputFileURL];
-					}
-				} completionHandler:^( BOOL success, NSError *error ) {
-					if ( ! success ) {
-						NSLog( @"Could not save movie to photo library: %@", error );
-					}
-					cleanup();
-				}];
-			}
-			else {
-				cleanup();
-			}
-		}];
+//		[PHPhotoLibrary requestAuthorization:^( PHAuthorizationStatus status ) {
+//			if ( status == PHAuthorizationStatusAuthorized ) {
+//				// Save the movie file to the photo library and cleanup.
+//				[[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+//					// In iOS 9 and later, it's possible to move the file into the photo library without duplicating the file data.
+//					// This avoids using double the disk space during save, which can make a difference on devices with limited free disk space.
+//					if ( [PHAssetResourceCreationOptions class] ) {
+//						PHAssetResourceCreationOptions *options = [[PHAssetResourceCreationOptions alloc] init];
+//						options.shouldMoveFile = YES;
+//						PHAssetCreationRequest *changeRequest = [PHAssetCreationRequest creationRequestForAsset];
+//						[changeRequest addResourceWithType:PHAssetResourceTypeVideo fileURL:outputFileURL options:options];
+//					}
+//					else {
+//						[PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:outputFileURL];
+//					}
+//				} completionHandler:^( BOOL success, NSError *error ) {
+//					if ( ! success ) {
+//						NSLog( @"Could not save movie to photo library: %@", error );
+//					}
+//					cleanup();
+//				}];
+//			}
+//			else {
+//				cleanup();
+//			}
+//		}];
 	}
 	else {
 		cleanup();
