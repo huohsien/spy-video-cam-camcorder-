@@ -59,6 +59,12 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 {
 	[super viewDidLoad];
 
+    UIImage *_maskingImage = [UIImage imageNamed:@"mask"];
+    CALayer *_maskingLayer = [CALayer layer];
+    _maskingLayer.frame = CGRectMake(0, 0, 45, 80);//self.previewView.bounds;
+    [_maskingLayer setContents:(id)[_maskingImage CGImage]];
+    [self.previewView.layer setMask:_maskingLayer];
+    
 	// Disable UI. The UI is enabled if and only if the session starts running.
 	self.cameraButton.enabled = NO;
 	self.recordButton.enabled = NO;
@@ -756,7 +762,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 }
 
 - (void)setPreviewImageViewClear {
-    self.previewView.alpha = 0.6;
+    self.previewView.alpha = 0.25;
     [self.crossHairLabel setHidden:NO];
     
 }
