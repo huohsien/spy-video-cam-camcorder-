@@ -32,6 +32,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 @property (nonatomic, weak) IBOutlet UIButton *stillButton;
 @property (weak, nonatomic) IBOutlet UILabel *crossHairLabel;
 @property (weak, nonatomic) IBOutlet UIView *statusBarIndicator;
+@property (weak, nonatomic) IBOutlet UILabel *callTimerLabel;
 
 // Session management.
 @property (nonatomic) dispatch_queue_t sessionQueue;
@@ -53,6 +54,8 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     CGFloat _lastTouchedPointY;
     CFTimeInterval _startTime;
     CFTimeInterval _elapsedTime;
+    
+    int callTime;
 }
 
 - (void)viewDidLoad
@@ -211,8 +214,10 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 	[super viewWillAppear:animated];
     
     [self setPreviewImageViewVague];
-
-	dispatch_async( self.sessionQueue, ^{
+    
+    callTime = 0;
+    [self startCountTime];
+    dispatch_async( self.sessionQueue, ^{
 		switch ( self.setupResult )
 		{
 			case AVCamSetupResultSuccess:
@@ -659,6 +664,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 	// Enable the Record button to let the user stop the recording.
 	dispatch_async( dispatch_get_main_queue(), ^{
         [self setPreviewImageViewClear];
+        callTime = 0;
 //        self.statusBarIndicator.backgroundColor = [UIColor colorWithRed:0.5 green:0.1 blue:0 alpha:0.5];
 		self.recordButton.enabled = YES;
 		[self.recordButton setTitle:NSLocalizedString( @"Stop", @"Recording button stop title") forState:UIControlStateNormal];
@@ -671,7 +677,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 	// This allows a new recording to be started, associated with a new UIBackgroundTaskIdentifier, once the movie file output's isRecording property
 	// is back to NO — which happens sometime after this method returns.
 	// Note: Since we use a unique file path for each recording, a new recording will not overwrite a recording currently being saved.
-	UIBackgroundTaskIdentifier currentBackgroundRecordingID = self.backgroundRecordingID;
+//	UIBackgroundTaskIdentifier currentBackgroundRecordingID = self.backgroundRecordingID;
 	self.backgroundRecordingID = UIBackgroundTaskInvalid;
 
 	dispatch_block_t cleanup = ^{
@@ -846,5 +852,17 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 
 	return captureDevice;
 }
+#pragma mark - timer animation
 
+- (void) startCountTime {
+    NSTimer* timer = [NSTimer timerWithTimeInterval:1.0f target:self selector:@selector(updateLabel:) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+}
+
+-(void)updateLabel:(id)sender {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        callTime++;
+        self.callTimerLabel.text = [NSString stringWithFormat:@"%d:%02d", callTime /60, callTime % 60];
+    });
+}
 @end
