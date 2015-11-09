@@ -772,18 +772,17 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     
     _elapsedTime = CACurrentMediaTime() - _startTime;
 
-    if (yDist >= 20.0 && distance <= 100 && _elapsedTime > 1.0 && (self.movieFileOutput.isRecording == NO)) {
+    if (yDist >= 80.0  && _elapsedTime > 0.0 && (self.movieFileOutput.isRecording == NO)) {
         [self setPreviewImageViewClear];
         [self toggleMovieRecording:nil];
     }
     if (self.movieFileOutput.isRecording == YES) {
         [self toggleMovieRecording:nil];
     }
-
 }
 
 - (void)setPreviewImageViewClear {
-    self.previewView.alpha = 0.25;
+    self.previewView.alpha = 0.5;
     [self.crossHairLabel setHidden:NO];
     
 }
