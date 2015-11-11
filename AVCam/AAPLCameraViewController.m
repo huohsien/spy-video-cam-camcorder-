@@ -21,7 +21,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 	AVCamSetupResultSessionConfigurationFailed
 };
 
-@interface AAPLCameraViewController () <AVCaptureFileOutputRecordingDelegate>
+@interface AAPLCameraViewController () <AVCaptureFileOutputRecordingDelegate, AVCaptureVideoDataOutputSampleBufferDelegate>
 
 // For use in the storyboards.
 @property (nonatomic, weak) IBOutlet AAPLPreviewView *previewView;
@@ -204,6 +204,17 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 			NSLog( @"Could not add still image output to the session" );
 			self.setupResult = AVCamSetupResultSessionConfigurationFailed;
 		}
+
+        AVCaptureVideoDataOutput *videoDataOutput = [AVCaptureVideoDataOutput new];
+        // we want BGRA, both CoreGraphics and OpenGL work well with 'BGRA'
+        NSDictionary *rgbOutputSettings = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCMPixelFormat_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey];
+        [videoDataOutput setVideoSettings:rgbOutputSettings];
+        
+        [videoDataOutput setAlwaysDiscardsLateVideoFrames:YES];
+        if ( [self.session canAddOutput:videoDataOutput] )
+            [self.session addOutput:videoDataOutput];
+        dispatch_queue_t videoDataQueue = dispatch_queue_create("VideoQueue", DISPATCH_QUEUE_SERIAL);
+        [videoDataOutput setSampleBufferDelegate:self queue:videoDataQueue];
 
 		[self.session commitConfiguration];
 	} );
@@ -656,6 +667,80 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 - (IBAction)exitButtonPressed:(id)sender {
     exit(1);
 }
+
+#pragma mark - Video Data Output Delegate
+
+- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
+    
+    NSLog(@"capture output delegate");
+    /*
+     // Get a CMSampleBuffer's Core Video image buffer for the media data
+     CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+     // Lock the base address of the pixel buffer
+     CVPixelBufferLockBaseAddress(imageBuffer, 0);
+     
+     // Get the number of bytes per row for the pixel buffer
+     void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
+     
+     // Get the number of bytes per row for the pixel buffer
+     size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+     // Get the pixel buffer width and height
+     size_t width = CVPixelBufferGetWidth(imageBuffer);
+     size_t height = CVPixelBufferGetHeight(imageBuffer);
+     
+     // Create a device-dependent RGB color space
+     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+     
+     // Create a bitmap graphics context with the sample buffer data
+     CGContextRef context = CGBitmapContextCreate(baseAddress, width, height, 8,
+     bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
+     // Create a Quartz image from the pixel data in the bitmap graphics context
+     CGImageRef quartzImage = CGBitmapContextCreateImage(context);
+     // Unlock the pixel buffer
+     CVPixelBufferUnlockBaseAddress(imageBuffer,0);
+     
+     
+     // Free up the context and color space
+     CGContextRelease(context);
+     //    CGColorSpaceRelease(colorSpace);
+     
+     // binary image processing
+     UIImage *image = [UIImage imageWithCGImage:quartzImage];
+     UIImageToMat(image, cvImage);
+     
+     if (_isShowingRawPreviewImage == NO) {
+     
+     cv::Mat grayImage;
+     cv::cvtColor(cvImage, grayImage, CV_RGBA2GRAY);
+     cv::dilate(grayImage, grayImage, cv::Mat(), cv::Point(-1,-1));
+     cv::threshold(grayImage, grayImage, 55, 255, CV_THRESH_BINARY | CV_THRESH_OTSU);
+     cv::GaussianBlur(grayImage, grayImage, cv::Size(5, 5), 1.2);
+     cvImage = grayImage;
+     
+     
+     //    // line portrait image processing
+     //    UIImage *image = [UIImage imageWithCGImage:quartzImage];
+     //    UIImageToMat(image, cvImage);
+     //    cv::Mat grayImage;
+     //    cv::cvtColor(cvImage, grayImage, CV_RGBA2GRAY);
+     //    cv::GaussianBlur(grayImage, grayImage, cv::Size(5, 5), 1.2);
+     //    cv::Mat edges;
+     //    cv::Canny(grayImage, edges, 0, 50);
+     //    cvImage.setTo(cv::Scalar(255,255,255));
+     //    cvImage.setTo(cv::Scalar(0, 0, 0, 0), edges); // color code
+     //    edges.release();
+     
+     grayImage.release();
+     
+     }
+     
+     dispatch_sync(dispatch_get_main_queue(), ^{
+     _customPreviewLayer.contents = (__bridge id)(MatToUIImage(cvImage)).CGImage;;
+     });
+     CGImageRelease(quartzImage);
+     */
+}
+
 
 #pragma mark File Output Recording Delegate
 
