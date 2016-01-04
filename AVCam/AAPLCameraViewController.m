@@ -50,11 +50,11 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 
 @implementation AAPLCameraViewController {
     
-    CGFloat _lastTouchedPointX;
-    CGFloat _lastTouchedPointY;
-    CFTimeInterval _startTime;
-    CFTimeInterval _elapsedTime;
-    
+    CGFloat lastTouchedPointX;
+    CGFloat lastTouchedPointY;
+    CFTimeInterval startTime;
+    CFTimeInterval elapsedTime;
+    int tapCounter;
     int callTime;
 }
 
@@ -62,11 +62,16 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 {
 	[super viewDidLoad];
 
-    UIImage *_maskingImage = [UIImage imageNamed:@"mask"];
-    CALayer *_maskingLayer = [CALayer layer];
-    _maskingLayer.frame = CGRectMake(0, 0, 45, 80);//self.previewView.bounds;
-    [_maskingLayer setContents:(id)[_maskingImage CGImage]];
-    [self.previewView.layer setMask:_maskingLayer];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationEnteredForeground:)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
+    
+//    UIImage *_maskingImage = [UIImage imageNamed:@"mask"];
+//    CALayer *_maskingLayer = [CALayer layer];
+//    _maskingLayer.frame = CGRectMake(0, 0, 34, 60);//self.previewView.bounds;
+//    [_maskingLayer setContents:(id)[_maskingImage CGImage]];
+//    [self.previewView.layer setMask:_maskingLayer];
     
 	// Disable UI. The UI is enabled if and only if the session starts running.
 	self.cameraButton.enabled = NO;
@@ -227,6 +232,8 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     [self setPreviewImageViewVague];
     
     callTime = 0;
+    tapCounter = 0;
+    
     [self startCountTime];
     dispatch_async( self.sessionQueue, ^{
 		switch ( self.setupResult )
@@ -237,6 +244,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 				[self addObservers];
 				[self.session startRunning];
 				self.sessionRunning = self.session.isRunning;
+//                [self toggleMovieRecording:nil];
 				break;
 			}
 			case AVCamSetupResultCameraNotAuthorized:
@@ -457,6 +465,11 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 			self.cameraUnavailableLabel.hidden = YES;
 		}];
 	}
+}
+
+- (void)applicationEnteredForeground:(NSNotification *)notification {
+    NSLog(@"Application Entered Foreground");
+//    [self toggleMovieRecording:nil];
 }
 
 #pragma mark Actions
@@ -830,10 +843,9 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self.view];
-    _lastTouchedPointX = point.x;
-    _lastTouchedPointY = point.y;
+    lastTouchedPointX = point.x;
+    lastTouchedPointY = point.y;
     
-    _startTime = CACurrentMediaTime();
 }
 
 - (void) touchesMoved:(NSSet *)touches
@@ -849,25 +861,42 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     CGPoint point = [touch locationInView:self.view];
     CGFloat pointX = point.x;
     CGFloat pointY = point.y;
-    CGFloat xDist = (pointX - _lastTouchedPointX);
-    CGFloat yDist = (pointY - _lastTouchedPointY);
+    CGFloat xDist = (pointX - lastTouchedPointX);
+    CGFloat yDist = (pointY - lastTouchedPointY);
     CGFloat distance = sqrt((xDist * xDist) + (yDist * yDist));
     
     //    NSLog(@"moved distance %.0f",distance);
     
-    _elapsedTime = CACurrentMediaTime() - _startTime;
-
-    if (yDist >= 80.0  && _elapsedTime > 0.0 && (self.movieFileOutput.isRecording == NO)) {
+    //handle tap gesture
+    
+    if (tapCounter == 0) {
+        startTime = CACurrentMediaTime();
+    }
+    elapsedTime = CACurrentMediaTime() - startTime;
+    if (elapsedTime > 0.3) {
+        tapCounter = 0;
+    } else if (distance < 20.0) {
+        tapCounter++;
+        NSLog(@"tapCounter = %d", tapCounter);
+    }
+    if (tapCounter >= 2) {
+        tapCounter = 0;
+        [self showCollectionView];
+    }
+    
+    
+    if (yDist >= 80.0  && elapsedTime > 0.0 && (self.movieFileOutput.isRecording == NO)) {
         [self setPreviewImageViewClear];
         [self toggleMovieRecording:nil];
     }
     if (self.movieFileOutput.isRecording == YES) {
+        tapCounter = 0;
         [self toggleMovieRecording:nil];
     }
 }
 
 - (void)setPreviewImageViewClear {
-    self.previewView.alpha = 0.5;
+    self.previewView.alpha = 1.0;
     [self.crossHairLabel setHidden:NO];
     
 }
@@ -949,4 +978,11 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
         self.callTimerLabel.text = [NSString stringWithFormat:@"%d:%02d", callTime /60, callTime % 60];
     });
 }
+#pragma mark - callback
+
+- (void)showCollectionView {
+    NSLog(@"showCollectionView");
+    [self performSegueWithIdentifier:@"ToCollectionView" sender:self];
+}
+
 @end

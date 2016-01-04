@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eqU-OL-LSm">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -50,11 +50,11 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="6ku-0g-94f">
-                                        <variation key="widthClass=compact" constant="50"/>
+                                    <constraint firstAttribute="width" constant="1" id="6ku-0g-94f">
+                                        <variation key="widthClass=compact" constant="60"/>
                                     </constraint>
-                                    <constraint firstAttribute="height" constant="50" id="yAI-Dc-dKS">
-                                        <variation key="widthClass=compact" constant="50"/>
+                                    <constraint firstAttribute="height" constant="1" id="yAI-Dc-dKS">
+                                        <variation key="widthClass=compact" constant="60"/>
                                     </constraint>
                                 </constraints>
                                 <variation key="default">
@@ -72,24 +72,22 @@
                                 <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="20" y="28" width="60" height="60"/>
                                 </variation>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="fY6-qX-ntV" appends="YES" id="G6D-dx-xU8"/>
-                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="pdt-de-cfM" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="4Nq-dH-TMb"/>
                             <constraint firstItem="pdt-de-cfM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ea5-oD-hKq"/>
                             <constraint firstItem="2Iy-GS-BBa" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="STK-zc-sjG"/>
                             <constraint firstItem="pdt-de-cfM" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="b9r-xP-TNQ"/>
                             <constraint firstItem="3eR-Rn-XpZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="61" id="ftC-0Z-OFW">
-                                <variation key="widthClass=compact" constant="207"/>
+                                <variation key="widthClass=compact" constant="201"/>
                             </constraint>
                             <constraint firstItem="2Iy-GS-BBa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pGb-wW-pqG"/>
                             <constraint firstItem="2Iy-GS-BBa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="rpT-Tf-zOS"/>
                             <constraint firstAttribute="bottom" secondItem="3eR-Rn-XpZ" secondAttribute="bottom" constant="50" id="ukS-vh-2JY">
-                                <variation key="widthClass=compact" constant="237"/>
+                                <variation key="widthClass=compact" constant="230"/>
                             </constraint>
                             <constraint firstItem="2Iy-GS-BBa" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="wdQ-OE-EYP"/>
                         </constraints>
@@ -98,15 +96,15 @@
                                 <exclude reference="pdt-de-cfM"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="STK-zc-sjG"/>
-                                <exclude reference="pGb-wW-pqG"/>
-                                <exclude reference="rpT-Tf-zOS"/>
-                                <exclude reference="wdQ-OE-EYP"/>
                                 <exclude reference="4Nq-dH-TMb"/>
                                 <exclude reference="Ea5-oD-hKq"/>
                                 <exclude reference="b9r-xP-TNQ"/>
                                 <exclude reference="ftC-0Z-OFW"/>
                                 <exclude reference="ukS-vh-2JY"/>
+                                <exclude reference="STK-zc-sjG"/>
+                                <exclude reference="pGb-wW-pqG"/>
+                                <exclude reference="rpT-Tf-zOS"/>
+                                <exclude reference="wdQ-OE-EYP"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -114,33 +112,97 @@
                                 <include reference="pdt-de-cfM"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="STK-zc-sjG"/>
-                                <include reference="pGb-wW-pqG"/>
-                                <include reference="rpT-Tf-zOS"/>
-                                <include reference="wdQ-OE-EYP"/>
                                 <include reference="4Nq-dH-TMb"/>
                                 <include reference="Ea5-oD-hKq"/>
                                 <include reference="b9r-xP-TNQ"/>
                                 <include reference="ftC-0Z-OFW"/>
                                 <include reference="ukS-vh-2JY"/>
+                                <include reference="STK-zc-sjG"/>
+                                <include reference="pGb-wW-pqG"/>
+                                <include reference="rpT-Tf-zOS"/>
+                                <include reference="wdQ-OE-EYP"/>
                             </mask>
                         </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="hkS-lB-6YU"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="previewView" destination="3eR-Rn-XpZ" id="e7I-nu-L6j"/>
                         <outlet property="statusBarIndicator" destination="pdt-de-cfM" id="mnY-h8-Yfj"/>
+                        <segue destination="Ly3-f5-Z4a" kind="show" identifier="ToCollectionView" id="d1J-eR-AyK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="fY6-qX-ntV">
-                    <connections>
-                        <action selector="focusAndExposeTap:" destination="BYZ-38-t0r" id="65g-8k-5pv"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-657.75" y="-630.5"/>
+            <point key="canvasLocation" x="239.25" y="-637.5"/>
+        </scene>
+        <!--Capture Videos View Controller-->
+        <scene sceneID="jgg-4K-Vk8">
+            <objects>
+                <collectionViewController id="Ly3-f5-Z4a" customClass="CaptureVideosViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" id="gAm-XU-keD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cTt-49-Mcu">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="vidoeClipCell" id="xaC-eo-RDT">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <segue destination="JkA-PZ-DRa" kind="showDetail" identifier="playVideo" id="iBd-9h-Umn"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="Ly3-f5-Z4a" id="ZQd-i5-sqg"/>
+                            <outlet property="delegate" destination="Ly3-f5-Z4a" id="U8s-q5-xMT"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WxC-bf-CuS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1098" y="-622"/>
+        </scene>
+        <!--AV Player View Controller-->
+        <scene sceneID="H6S-mf-Dc7">
+            <objects>
+                <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="JkA-PZ-DRa" customClass="VideoPlayerViewController" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fw5-54-MJk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1806" y="-622"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9Pw-2N-DWy">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="eqU-OL-LSm" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="r4z-PD-SEx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="k3d-8A-uAJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NDg-aj-qcN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-658.5" y="-631"/>
         </scene>
     </scenes>
     <resources>
