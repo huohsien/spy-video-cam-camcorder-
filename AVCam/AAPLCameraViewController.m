@@ -229,6 +229,8 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 {
 	[super viewWillAppear:animated];
     
+    [self.navigationController setNavigationBarHidden:YES];
+
     [self setPreviewImageViewVague];
     
     callTime = 0;
@@ -896,7 +898,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 }
 
 - (void)setPreviewImageViewClear {
-    self.previewView.alpha = 1.0;
+    self.previewView.alpha = 0.3;
     [self.crossHairLabel setHidden:NO];
     
 }

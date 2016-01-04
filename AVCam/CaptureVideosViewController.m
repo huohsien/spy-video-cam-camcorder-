@@ -59,6 +59,8 @@ static NSString *const reuseIdentifier = @"videoClipCell";
     numberOfVideoClips = 0;
     videoFilePathToBePlayed = nil;
     
+    [self.navigationController setNavigationBarHidden:NO];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"VideoClipsCell"];
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -94,9 +96,6 @@ static NSString *const reuseIdentifier = @"videoClipCell";
     longPressGesture.minimumPressDuration = 0.4;
     [self.view addGestureRecognizer:longPressGesture];
     
-    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedRight:)];
-    swipeGesture.direction =UISwipeGestureRecognizerDirectionRight;
-    [self.view addGestureRecognizer:swipeGesture];
 
 }
 #pragma mark - gesture recognizer callbacks
@@ -153,10 +152,6 @@ static NSString *const reuseIdentifier = @"videoClipCell";
     }
 }
 
-- (void)swipedRight:(id)sender {
-    NSLog(@"%s",__PRETTY_FUNCTION__);
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -177,7 +172,7 @@ static NSString *const reuseIdentifier = @"videoClipCell";
     
     UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"VideoClipsCell" forIndexPath:indexPath];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100 / [[thumbnailAspectRatioArray objectAtIndex:indexPath.row] doubleValue])];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 70, 70 / [[thumbnailAspectRatioArray objectAtIndex:indexPath.row] doubleValue])];
     
     [cell addSubview:imageView];
     
@@ -200,7 +195,7 @@ static NSString *const reuseIdentifier = @"videoClipCell";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
-    CGSize retval =  CGSizeMake(100, 100 / [[thumbnailAspectRatioArray objectAtIndex:indexPath.row] doubleValue]);
+    CGSize retval =  CGSizeMake(70, 70 / [[thumbnailAspectRatioArray objectAtIndex:indexPath.row] doubleValue]);
     return retval;
 }
 

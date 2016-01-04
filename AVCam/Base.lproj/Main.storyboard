@@ -45,28 +45,25 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3eR-Rn-XpZ" userLabel="Preview" customClass="AAPLPreviewView">
+                            <view alpha="0.5" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3eR-Rn-XpZ" userLabel="Preview" customClass="AAPLPreviewView">
                                 <rect key="frame" x="20" y="0.0" width="60" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="1" id="6ku-0g-94f">
-                                        <variation key="widthClass=compact" constant="60"/>
-                                    </constraint>
-                                    <constraint firstAttribute="height" constant="1" id="yAI-Dc-dKS">
-                                        <variation key="widthClass=compact" constant="60"/>
-                                    </constraint>
+                                    <constraint firstAttribute="width" constant="60" id="5Fe-UH-z5S"/>
+                                    <constraint firstAttribute="height" constant="60" id="tq1-gr-Q9p"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="6ku-0g-94f"/>
-                                        <exclude reference="yAI-Dc-dKS"/>
+                                        <exclude reference="5Fe-UH-z5S"/>
+                                        <exclude reference="tq1-gr-Q9p"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="295" y="113" width="60" height="60"/>
                                     <mask key="constraints">
-                                        <include reference="6ku-0g-94f"/>
-                                        <include reference="yAI-Dc-dKS"/>
+                                        <include reference="5Fe-UH-z5S"/>
+                                        <include reference="tq1-gr-Q9p"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
@@ -80,15 +77,15 @@
                             <constraint firstItem="pdt-de-cfM" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="4Nq-dH-TMb"/>
                             <constraint firstItem="pdt-de-cfM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ea5-oD-hKq"/>
                             <constraint firstItem="2Iy-GS-BBa" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="STK-zc-sjG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3eR-Rn-XpZ" secondAttribute="trailing" constant="9" id="WlC-OM-UYr">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstItem="pdt-de-cfM" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="b9r-xP-TNQ"/>
-                            <constraint firstItem="3eR-Rn-XpZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="61" id="ftC-0Z-OFW">
-                                <variation key="widthClass=compact" constant="201"/>
+                            <constraint firstItem="3eR-Rn-XpZ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="137" id="gKh-I1-ZGB">
+                                <variation key="widthClass=compact" constant="113"/>
                             </constraint>
                             <constraint firstItem="2Iy-GS-BBa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pGb-wW-pqG"/>
                             <constraint firstItem="2Iy-GS-BBa" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="rpT-Tf-zOS"/>
-                            <constraint firstAttribute="bottom" secondItem="3eR-Rn-XpZ" secondAttribute="bottom" constant="50" id="ukS-vh-2JY">
-                                <variation key="widthClass=compact" constant="230"/>
-                            </constraint>
                             <constraint firstItem="2Iy-GS-BBa" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="wdQ-OE-EYP"/>
                         </constraints>
                         <variation key="default">
@@ -96,15 +93,15 @@
                                 <exclude reference="pdt-de-cfM"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="4Nq-dH-TMb"/>
-                                <exclude reference="Ea5-oD-hKq"/>
-                                <exclude reference="b9r-xP-TNQ"/>
-                                <exclude reference="ftC-0Z-OFW"/>
-                                <exclude reference="ukS-vh-2JY"/>
                                 <exclude reference="STK-zc-sjG"/>
                                 <exclude reference="pGb-wW-pqG"/>
                                 <exclude reference="rpT-Tf-zOS"/>
                                 <exclude reference="wdQ-OE-EYP"/>
+                                <exclude reference="4Nq-dH-TMb"/>
+                                <exclude reference="Ea5-oD-hKq"/>
+                                <exclude reference="b9r-xP-TNQ"/>
+                                <exclude reference="WlC-OM-UYr"/>
+                                <exclude reference="gKh-I1-ZGB"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -112,15 +109,15 @@
                                 <include reference="pdt-de-cfM"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="4Nq-dH-TMb"/>
-                                <include reference="Ea5-oD-hKq"/>
-                                <include reference="b9r-xP-TNQ"/>
-                                <include reference="ftC-0Z-OFW"/>
-                                <include reference="ukS-vh-2JY"/>
                                 <include reference="STK-zc-sjG"/>
                                 <include reference="pGb-wW-pqG"/>
                                 <include reference="rpT-Tf-zOS"/>
                                 <include reference="wdQ-OE-EYP"/>
+                                <include reference="4Nq-dH-TMb"/>
+                                <include reference="Ea5-oD-hKq"/>
+                                <include reference="b9r-xP-TNQ"/>
+                                <include reference="WlC-OM-UYr"/>
+                                <include reference="gKh-I1-ZGB"/>
                             </mask>
                         </variation>
                     </view>
@@ -171,6 +168,7 @@
                             <outlet property="delegate" destination="Ly3-f5-Z4a" id="U8s-q5-xMT"/>
                         </connections>
                     </collectionView>
+                    <nil key="simulatedTopBarMetrics"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WxC-bf-CuS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -206,7 +204,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bg.png" width="375" height="667"/>
+        <image name="bg.png" width="320" height="568"/>
     </resources>
     <color key="tintColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

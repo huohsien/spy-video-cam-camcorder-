@@ -12,7 +12,7 @@
 @implementation VideoPlayerViewController
 @synthesize filePath = _filePath;
 
--(void)viewDidLoad {
+- (void)viewDidLoad {
     
     [super viewDidLoad];
     
@@ -22,5 +22,13 @@
     NSString *videoPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, self.filePath];
     NSURL *fileURL = [NSURL fileURLWithPath:videoPath];
     self.player = [AVPlayer playerWithURL:fileURL];
+    [self.player play];
+    self.showsPlaybackControls = NO;
+    
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    self.showsPlaybackControls = YES;
+    [super touchesBegan:touches withEvent:event];
 }
 @end
