@@ -160,6 +160,7 @@ static NSString *const reuseIdentifier = @"videoClipCell";
         destViewController.filePath = videoFilePathToBePlayed;
     }
 }
+
 #pragma mark - UICollectionView Datasource
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
     

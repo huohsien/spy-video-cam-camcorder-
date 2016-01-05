@@ -871,16 +871,25 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     
     //handle tap gesture
     
+    if (self.movieFileOutput.isRecording == YES) {
+        tapCounter = 0;
+        [self toggleMovieRecording:nil];
+        return;
+    }
+    
     if (tapCounter == 0) {
         startTime = CACurrentMediaTime();
     }
+    
     elapsedTime = CACurrentMediaTime() - startTime;
-    if (elapsedTime > 0.3) {
+    
+    if (elapsedTime > 0.8) {
         tapCounter = 0;
     } else if (distance < 20.0) {
         tapCounter++;
-        NSLog(@"tapCounter = %d", tapCounter);
     }
+    NSLog(@"tapCounter = %d", tapCounter);
+
     if (tapCounter >= 2) {
         tapCounter = 0;
         [self showCollectionView];
@@ -890,11 +899,9 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     if (yDist >= 80.0  && elapsedTime > 0.0 && (self.movieFileOutput.isRecording == NO)) {
         [self setPreviewImageViewClear];
         [self toggleMovieRecording:nil];
+        return;
     }
-    if (self.movieFileOutput.isRecording == YES) {
-        tapCounter = 0;
-        [self toggleMovieRecording:nil];
-    }
+
 }
 
 - (void)setPreviewImageViewClear {

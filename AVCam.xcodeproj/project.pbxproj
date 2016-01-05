@@ -17,7 +17,7 @@
 		6658014E1C255923005AFBD3 /* mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6658014D1C255923005AFBD3 /* mask@2x.png */; };
 		665801511C29150C005AFBD3 /* CaptureVideosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665801501C29150C005AFBD3 /* CaptureVideosViewController.m */; };
 		6658019E1C2C20F9005AFBD3 /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6658019D1C2C20F9005AFBD3 /* VideoPlayerViewController.m */; };
-		66E310391C3A8F300092906C /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E310381C3A8F300092906C /* bg@2x.png */; };
+		66E310391C3A8F300092906C /* bg3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E310381C3A8F300092906C /* bg3@2x.png */; };
 		66EE7ECE1BEF26BB003FB553 /* bg1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66EE7ECD1BEF26BB003FB553 /* bg1@2x.png */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +40,7 @@
 		665801501C29150C005AFBD3 /* CaptureVideosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureVideosViewController.m; sourceTree = "<group>"; };
 		6658019C1C2C20F9005AFBD3 /* VideoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerViewController.h; sourceTree = "<group>"; };
 		6658019D1C2C20F9005AFBD3 /* VideoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewController.m; sourceTree = "<group>"; };
-		66E310381C3A8F300092906C /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
+		66E310381C3A8F300092906C /* bg3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg3@2x.png"; sourceTree = "<group>"; };
 		66EE7ECD1BEF26BB003FB553 /* bg1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg1@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,7 +105,7 @@
 		6652F1631BEC6C5A001F9177 /* image */ = {
 			isa = PBXGroup;
 			children = (
-				66E310381C3A8F300092906C /* bg@2x.png */,
+				66E310381C3A8F300092906C /* bg3@2x.png */,
 				6658014D1C255923005AFBD3 /* mask@2x.png */,
 				66EE7ECD1BEF26BB003FB553 /* bg1@2x.png */,
 				6652F1641BEC6C6D001F9177 /* bg2@2x.png */,
@@ -143,6 +143,7 @@
 				TargetAttributes = {
 					220626581A1E330400A45150 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = ZWQWGRSN4T;
 					};
 				};
 			};
@@ -172,7 +173,7 @@
 				220626681A1E330400A45150 /* Main.storyboard in Resources */,
 				6658014E1C255923005AFBD3 /* mask@2x.png in Resources */,
 				66EE7ECE1BEF26BB003FB553 /* bg1@2x.png in Resources */,
-				66E310391C3A8F300092906C /* bg@2x.png in Resources */,
+				66E310391C3A8F300092906C /* bg3@2x.png in Resources */,
 				2206266A1A1E330400A45150 /* Images.xcassets in Resources */,
 				6652F1651BEC6C6D001F9177 /* bg2@2x.png in Resources */,
 			);
@@ -292,10 +293,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AVCam/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -304,10 +308,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AVCam/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
