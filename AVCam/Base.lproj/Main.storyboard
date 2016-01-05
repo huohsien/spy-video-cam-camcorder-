@@ -31,8 +31,6 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="hkS-lB-6YU"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="414" height="736"/>
                     <connections>
                         <outlet property="previewView" destination="3eR-Rn-XpZ" id="e7I-nu-L6j"/>
                         <segue destination="Ly3-f5-Z4a" kind="push" identifier="ToCollectionView" id="d1J-eR-AyK"/>
@@ -67,7 +65,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="JkA-PZ-DRa" kind="push" identifier="playVideo" id="iBd-9h-Umn"/>
+                                    <segue destination="JkA-PZ-DRa" kind="modal" identifier="playVideo" id="iBd-9h-Umn"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -81,7 +79,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WxC-bf-CuS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="585.60000000000002" y="-588.82666666666671"/>
+            <point key="canvasLocation" x="587" y="-604"/>
         </scene>
         <!--AV Player View Controller-->
         <scene sceneID="H6S-mf-Dc7">
@@ -89,11 +87,11 @@
                 <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="JkA-PZ-DRa" customClass="VideoPlayerViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="BSL-mL-vG6"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
+                    <size key="freeformSize" width="414" height="736"/>
                 </avPlayerViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fw5-54-MJk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1074.5" y="-589.5"/>
+            <point key="canvasLocation" x="1071" y="-604"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9Pw-2N-DWy">
@@ -102,6 +100,8 @@
                     <toolbarItems/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="414" height="736"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="r4z-PD-SEx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
