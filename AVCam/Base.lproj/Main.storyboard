@@ -14,14 +14,14 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="2Iy-GS-BBa">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3eR-Rn-XpZ" userLabel="Preview" customClass="AAPLPreviewView">
-                                <rect key="frame" x="225" y="138" width="60" height="60"/>
+                                <rect key="frame" x="201" y="112" width="60" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
@@ -38,14 +38,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="127.59999999999999" y="-603.5"/>
+            <point key="canvasLocation" x="-97.5" y="-661.5"/>
         </scene>
         <!--Capture Videos View Controller-->
         <scene sceneID="jgg-4K-Vk8">
             <objects>
                 <collectionViewController id="Ly3-f5-Z4a" customClass="CaptureVideosViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" id="gAm-XU-keD">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
@@ -79,7 +79,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WxC-bf-CuS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="587" y="-604"/>
+            <point key="canvasLocation" x="315.5" y="-661.5"/>
         </scene>
         <!--AV Player View Controller-->
         <scene sceneID="H6S-mf-Dc7">
@@ -87,11 +87,11 @@
                 <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="JkA-PZ-DRa" customClass="VideoPlayerViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="BSL-mL-vG6"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="414" height="736"/>
+                    <size key="freeformSize" width="375" height="667"/>
                 </avPlayerViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fw5-54-MJk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1071" y="-604"/>
+            <point key="canvasLocation" x="781" y="-654"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9Pw-2N-DWy">
@@ -101,7 +101,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="414" height="736"/>
+                    <size key="freeformSize" width="375" height="667"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="r4z-PD-SEx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -113,11 +113,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NDg-aj-qcN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-351.19999999999999" y="-597.34666666666669"/>
+            <point key="canvasLocation" x="-601" y="-661"/>
         </scene>
     </scenes>
     <resources>
-        <image name="bg" width="414" height="736"/>
+        <image name="bg" width="375" height="667"/>
     </resources>
     <color key="tintColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>
