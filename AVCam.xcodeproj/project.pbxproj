@@ -13,6 +13,7 @@
 		220626881A1E345E00A45150 /* AAPLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 220626831A1E345E00A45150 /* AAPLAppDelegate.m */; };
 		220626891A1E345E00A45150 /* AAPLPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 220626851A1E345E00A45150 /* AAPLPreviewView.m */; };
 		2206268A1A1E345E00A45150 /* AAPLCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 220626871A1E345E00A45150 /* AAPLCameraViewController.m */; };
+		662225C91CCBCA4E001BE988 /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 662225C81CCBCA4E001BE988 /* bg@2x.png */; };
 		6658014E1C255923005AFBD3 /* mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6658014D1C255923005AFBD3 /* mask@2x.png */; };
 		665801511C29150C005AFBD3 /* CaptureVideosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665801501C29150C005AFBD3 /* CaptureVideosViewController.m */; };
 		6658019E1C2C20F9005AFBD3 /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6658019D1C2C20F9005AFBD3 /* VideoPlayerViewController.m */; };
@@ -31,6 +32,7 @@
 		220626861A1E345E00A45150 /* AAPLCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLCameraViewController.h; sourceTree = "<group>"; };
 		220626871A1E345E00A45150 /* AAPLCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLCameraViewController.m; sourceTree = "<group>"; };
 		22CA31B91B0250C300D2DE70 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		662225C81CCBCA4E001BE988 /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
 		6658014D1C255923005AFBD3 /* mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mask@2x.png"; sourceTree = "<group>"; };
 		6658014F1C29150C005AFBD3 /* CaptureVideosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureVideosViewController.h; sourceTree = "<group>"; };
 		665801501C29150C005AFBD3 /* CaptureVideosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureVideosViewController.m; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				6658019D1C2C20F9005AFBD3 /* VideoPlayerViewController.m */,
 				220626661A1E330400A45150 /* Main.storyboard */,
 				220626691A1E330400A45150 /* Images.xcassets */,
+				662225C81CCBCA4E001BE988 /* bg@2x.png */,
 				2206265C1A1E330400A45150 /* Supporting Files */,
 			);
 			path = AVCam;
@@ -164,6 +167,7 @@
 				220626681A1E330400A45150 /* Main.storyboard in Resources */,
 				6658014E1C255923005AFBD3 /* mask@2x.png in Resources */,
 				2206266A1A1E330400A45150 /* Images.xcassets in Resources */,
+				662225C91CCBCA4E001BE988 /* bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

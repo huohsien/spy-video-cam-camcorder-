@@ -221,6 +221,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
         dispatch_queue_t videoDataQueue = dispatch_queue_create("VideoQueue", DISPATCH_QUEUE_SERIAL);
         [videoDataOutput setSampleBufferDelegate:self queue:videoDataQueue];
 
+
 		[self.session commitConfiguration];
 	} );
 }
