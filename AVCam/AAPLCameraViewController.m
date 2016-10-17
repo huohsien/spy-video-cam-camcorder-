@@ -10,7 +10,6 @@ View controller for camera interface.
 @import Photos;
 
 #import "AAPLCameraViewController.h"
-#import "AAPLPreviewView.h"
 
 static void * CapturingStillImageContext = &CapturingStillImageContext;
 static void * SessionRunningContext = &SessionRunningContext;
@@ -279,6 +278,26 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 			}
 		}
 	} );
+    
+    // set bg image accordint to device's screen
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    NSLog(@"%@", NSStringFromCGRect(screenRect));
+    CGRect previewRect = self.previewView.frame;
+    NSLog(@"%@", NSStringFromCGRect(previewRect));
+    if (screenRect.size.width == 414 && screenRect.size.height == 736) {
+        // iphone 6+ 6s+ 7+
+        [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone6_plus"]];
+        [self.previewView setFrame:CGRectMake(225, 138, 60, 60)];
+    } else if (screenRect.size.width == 320 && screenRect.size.height == 568) {
+        // iphone 5 5s
+        [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone5"]];
+        [self.previewView setFrame:CGRectMake(171, 201, 60, 60)];
+    } else if (screenRect.size.width == 375 && screenRect.size.height == 667) {
+        //iphone 6 6s
+        [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone6"]];
+        [self.previewView setFrame:CGRectMake(202, 112, 60, 60)];
+    }
+    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
