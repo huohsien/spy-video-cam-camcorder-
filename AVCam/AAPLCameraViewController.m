@@ -284,6 +284,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     NSLog(@"%@", NSStringFromCGRect(screenRect));
     CGRect previewRect = self.previewView.frame;
     NSLog(@"%@", NSStringFromCGRect(previewRect));
+    [self.backgroundImageView setFrame:screenRect];
     if (screenRect.size.width == 414 && screenRect.size.height == 736) {
         // iphone 6+ 6s+ 7+
         [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone6_plus"]];
@@ -296,8 +297,11 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
         //iphone 6 6s
         [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone6"]];
         [self.previewView setFrame:CGRectMake(202, 112, 60, 60)];
+    } else if (screenRect.size.width == 375 && screenRect.size.height == 812) {
+        //iphone X
+        [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphonex"]];
+        [self.previewView setFrame:CGRectMake(202, 112, 60, 60)];
     }
-    
 }
 
 - (void)viewDidDisappear:(BOOL)animated

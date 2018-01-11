@@ -16,7 +16,7 @@
             startingLineNumber = "125"
             endingLineNumber = "125"
             landmarkName = "-longPressed:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AVCam/AAPLCameraViewController.m"
-            timestampString = "498405798.624539"
+            timestampString = "537358884.363001"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "900"
-            endingLineNumber = "900"
+            startingLineNumber = "904"
+            endingLineNumber = "904"
             landmarkName = "-touchesEnded:withEvent:"
             landmarkType = "7">
          </BreakpointContent>

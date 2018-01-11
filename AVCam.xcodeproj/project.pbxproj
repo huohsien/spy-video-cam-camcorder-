@@ -17,6 +17,7 @@
 		6658014E1C255923005AFBD3 /* mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6658014D1C255923005AFBD3 /* mask@2x.png */; };
 		665801511C29150C005AFBD3 /* CaptureVideosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665801501C29150C005AFBD3 /* CaptureVideosViewController.m */; };
 		6658019E1C2C20F9005AFBD3 /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6658019D1C2C20F9005AFBD3 /* VideoPlayerViewController.m */; };
+		667F2152200770BC0065CA35 /* bg_iphonex.png in Resources */ = {isa = PBXBuildFile; fileRef = 667F2151200770BB0065CA35 /* bg_iphonex.png */; };
 		66F5BC811DB50B0D0087A2BA /* bg_iphone6_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F5BC801DB50B0D0087A2BA /* bg_iphone6_plus.png */; };
 		66F5BC831DB50CA90087A2BA /* bg_iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F5BC821DB50CA90087A2BA /* bg_iphone5.png */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,7 @@
 		665801501C29150C005AFBD3 /* CaptureVideosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureVideosViewController.m; sourceTree = "<group>"; };
 		6658019C1C2C20F9005AFBD3 /* VideoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerViewController.h; sourceTree = "<group>"; };
 		6658019D1C2C20F9005AFBD3 /* VideoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewController.m; sourceTree = "<group>"; };
+		667F2151200770BB0065CA35 /* bg_iphonex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphonex.png; sourceTree = "<group>"; };
 		66F5BC801DB50B0D0087A2BA /* bg_iphone6_plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone6_plus.png; sourceTree = "<group>"; };
 		66F5BC821DB50CA90087A2BA /* bg_iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone5.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,6 +91,7 @@
 				220626661A1E330400A45150 /* Main.storyboard */,
 				220626691A1E330400A45150 /* Images.xcassets */,
 				66F5BC821DB50CA90087A2BA /* bg_iphone5.png */,
+				667F2151200770BB0065CA35 /* bg_iphonex.png */,
 				662225C81CCBCA4E001BE988 /* bg_iphone6.png */,
 				66F5BC801DB50B0D0087A2BA /* bg_iphone6_plus.png */,
 				2206265C1A1E330400A45150 /* Supporting Files */,
@@ -144,6 +147,7 @@
 					220626581A1E330400A45150 = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = ZWQWGRSN4T;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -175,6 +179,7 @@
 				6658014E1C255923005AFBD3 /* mask@2x.png in Resources */,
 				66F5BC811DB50B0D0087A2BA /* bg_iphone6_plus.png in Resources */,
 				2206266A1A1E330400A45150 /* Images.xcassets in Resources */,
+				667F2152200770BC0065CA35 /* bg_iphonex.png in Resources */,
 				662225C91CCBCA4E001BE988 /* bg_iphone6.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,11 +300,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = ZWQWGRSN4T;
 				INFOPLIST_FILE = AVCam/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -310,11 +317,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = ZWQWGRSN4T;
 				INFOPLIST_FILE = AVCam/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
