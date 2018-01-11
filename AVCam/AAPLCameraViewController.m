@@ -300,7 +300,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     } else if (screenRect.size.width == 375 && screenRect.size.height == 812) {
         //iphone X
         [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphonex"]];
-        [self.previewView setFrame:CGRectMake(202, 112, 60, 60)];
+        [self.previewView setFrame:CGRectMake(27, 175, 60, 60)];
     }
 }
 
