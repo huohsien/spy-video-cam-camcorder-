@@ -316,7 +316,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
             case 2688:
                 NSLog(@"IPHONE XS_MAX");
                 [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphonexs_max"]];
-                [self.previewView setFrame:CGRectMake(27, 175, 60, 60)];
+                [self.previewView setFrame:CGRectMake(32, 192, 60, 60)];
                 break;
             case 1792:
                 NSLog(@"IPHONE XR");
