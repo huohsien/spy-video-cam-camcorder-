@@ -26,6 +26,10 @@
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>To record video from the back-side camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>To record sound for the video</string>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -51,9 +55,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>To record video from the back-side camera</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>To record sound for the video</string>
 </dict>
 </plist>

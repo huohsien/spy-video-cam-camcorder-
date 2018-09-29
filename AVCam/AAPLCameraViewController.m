@@ -281,26 +281,49 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     
     // set bg image accordint to device's screen
     CGRect screenRect = [[UIScreen mainScreen] bounds];
+    [self.backgroundImageView setFrame:screenRect];
+
     NSLog(@"%@", NSStringFromCGRect(screenRect));
     CGRect previewRect = self.previewView.frame;
     NSLog(@"%@", NSStringFromCGRect(previewRect));
-    [self.backgroundImageView setFrame:screenRect];
-    if (screenRect.size.width == 414 && screenRect.size.height == 736) {
-        // iphone 6+ 6s+ 7+
-        [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone6_plus"]];
-        [self.previewView setFrame:CGRectMake(225, 138, 60, 60)];
-    } else if (screenRect.size.width == 320 && screenRect.size.height == 568) {
-        // iphone 5 5s
-        [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone5"]];
-        [self.previewView setFrame:CGRectMake(171, 201, 60, 60)];
-    } else if (screenRect.size.width == 375 && screenRect.size.height == 667) {
-        //iphone 6 6s
-        [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone6"]];
-        [self.previewView setFrame:CGRectMake(202, 112, 60, 60)];
-    } else if (screenRect.size.width == 375 && screenRect.size.height == 812) {
-        //iphone X
-        [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphonex"]];
-        [self.previewView setFrame:CGRectMake(27, 175, 60, 60)];
+   
+    if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        int height = (int) UIScreen.mainScreen.nativeBounds.size.height;
+        int width = (int) UIScreen.mainScreen.nativeBounds.size.width;
+        NSLog(@"height = %d, widht = %d", height, width);
+        switch (height) {
+            case 1136:
+                NSLog(@"IPHONE 5,5S,5C");
+                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone5"]];
+                [self.previewView setFrame:CGRectMake(171, 201, 60, 60)];
+                break;
+            case 1334:
+                NSLog(@"IPHONE 6,7,8 IPHONE 6S,7S,8S ");
+                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone6"]];
+                [self.previewView setFrame:CGRectMake(202, 112, 60, 60)];
+                break;
+            case 1920:
+            case 2208:
+                NSLog(@"IPHONE 6PLUS, 6SPLUS, 7PLUS, 8PLUS");
+                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone6_plus"]];
+                [self.previewView setFrame:CGRectMake(225, 138, 60, 60)];
+                break;
+            case 2436:
+                NSLog(@"IPHONE X, IPHONE XS");
+                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphonexs"]];
+                [self.previewView setFrame:CGRectMake(27, 175, 60, 60)];
+                break;
+            case 2688:
+                NSLog(@"IPHONE XS_MAX");
+                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphonexs_max"]];
+                [self.previewView setFrame:CGRectMake(27, 175, 60, 60)];
+                break;
+            case 1792:
+                NSLog(@"IPHONE XR");
+                break;
+            default:
+                NSLog(@"UNDETERMINED");
+        }
     }
 }
 
