@@ -952,7 +952,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 }
 
 - (void)setPreviewImageViewClear {
-    self.previewView.alpha = 0.3;
+    self.previewView.alpha = 0.6;
     [self.crossHairLabel setHidden:NO];
     
 }

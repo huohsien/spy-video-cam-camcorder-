@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="eqU-OL-LSm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.15" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="eqU-OL-LSm">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.9"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,8 +21,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_iphone5.png" translatesAutoresizingMaskIntoConstraints="NO" id="2Iy-GS-BBa">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_iphonexs.png" translatesAutoresizingMaskIntoConstraints="NO" id="2Iy-GS-BBa">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3eR-Rn-XpZ" userLabel="Preview" customClass="AAPLPreviewView">
@@ -45,7 +45,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-99" y="-663"/>
+            <point key="canvasLocation" x="-159.19999999999999" y="-596.67487684729065"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="MgR-8i-w8r">
@@ -75,7 +75,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RFo-9h-LLs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="172" y="-1587"/>
+            <point key="canvasLocation" x="275.19999999999999" y="-1427.5862068965519"/>
         </scene>
         <!--Capture Videos View Controller-->
         <scene sceneID="jgg-4K-Vk8">
@@ -115,7 +115,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WxC-bf-CuS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="499.5" y="-661.5"/>
+            <point key="canvasLocation" x="799.20000000000005" y="-595.05247376311854"/>
         </scene>
         <!--AV Player View Controller-->
         <scene sceneID="H6S-mf-Dc7">
@@ -127,7 +127,7 @@
                 </avPlayerViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fw5-54-MJk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="964.5" y="-654.5"/>
+            <point key="canvasLocation" x="1543.2" y="-588.75562218890559"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9Pw-2N-DWy">
@@ -148,12 +148,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NDg-aj-qcN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-601" y="-661"/>
+            <point key="canvasLocation" x="-961.60000000000002" y="-594.60269865067471"/>
         </scene>
     </scenes>
     <resources>
-        <image name="bg_iphone5.png" width="640" height="1136"/>
         <image name="bg_iphonex.png" width="1125" height="2436"/>
+        <image name="bg_iphonexs.png" width="1125" height="2436"/>
     </resources>
     <color key="tintColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
