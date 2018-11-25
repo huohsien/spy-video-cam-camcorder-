@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.15" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="eqU-OL-LSm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="eqU-OL-LSm">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.9"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -48,34 +48,34 @@
             <point key="canvasLocation" x="-159.19999999999999" y="-596.67487684729065"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="MgR-8i-w8r">
+        <scene sceneID="bM3-0o-CkT">
             <objects>
-                <viewController id="dn6-tV-oHI" sceneMemberID="viewController">
+                <viewController id="DLY-Df-gt5" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="lJz-MS-agf"/>
-                        <viewControllerLayoutGuide type="bottom" id="gJa-zo-IBf"/>
+                        <viewControllerLayoutGuide type="top" id="DBf-aJ-ssM"/>
+                        <viewControllerLayoutGuide type="bottom" id="NMu-iM-TeG"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="fEP-Kb-yjb">
+                    <view key="view" contentMode="scaleToFill" id="4Il-BU-VMr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_iphonex.png" translatesAutoresizingMaskIntoConstraints="NO" id="5Lo-Sr-OgX">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_iphonexs.png" translatesAutoresizingMaskIntoConstraints="NO" id="5Lo-Sr-OgX">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZEB-Y5-pOr" userLabel="Preview" customClass="AAPLPreviewView">
-                                <rect key="frame" x="27" y="175" width="60" height="60"/>
+                                <rect key="frame" x="289" y="378" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RFo-9h-LLs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dcs-XT-roo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="275.19999999999999" y="-1427.5862068965519"/>
+            <point key="canvasLocation" x="-107" y="-1537"/>
         </scene>
         <!--Capture Videos View Controller-->
         <scene sceneID="jgg-4K-Vk8">
@@ -152,7 +152,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bg_iphonex.png" width="1125" height="2436"/>
         <image name="bg_iphonexs.png" width="1125" height="2436"/>
     </resources>
     <color key="tintColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
