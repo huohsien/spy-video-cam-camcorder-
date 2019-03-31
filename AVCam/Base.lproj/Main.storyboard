@@ -101,7 +101,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </view>
                                 <connections>
-                                    <segue destination="JkA-PZ-DRa" kind="modal" identifier="playVideo" id="iBd-9h-Umn"/>
+                                    <segue destination="Lwc-KF-7aw" kind="push" identifier="playVideo" id="sLq-T4-bbt"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -115,19 +115,17 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WxC-bf-CuS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="799.20000000000005" y="-595.05247376311854"/>
+            <point key="canvasLocation" x="890" y="-597"/>
         </scene>
         <!--AV Player View Controller-->
-        <scene sceneID="H6S-mf-Dc7">
+        <scene sceneID="5f7-Kf-60D">
             <objects>
-                <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="JkA-PZ-DRa" customClass="VideoPlayerViewController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="BSL-mL-vG6"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
+                <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="Lwc-KF-7aw" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="PEe-6J-zmE"/>
                 </avPlayerViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fw5-54-MJk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M3C-bS-63U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1543.2" y="-588.75562218890559"/>
+            <point key="canvasLocation" x="1654" y="-595"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9Pw-2N-DWy">

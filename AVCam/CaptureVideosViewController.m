@@ -8,7 +8,7 @@
 #import "AVKit/AVkit.h"
 #import "AVFoundation/AVFoundation.h"
 #import "CaptureVideosViewController.h"
-#import "VideoPlayerViewController.h"
+//#import "VideoPlayerViewController.h"
 
 #define TICK   NSDate *startTime = [NSDate date]
 #define TOCK   NSLog(@"Time: %f", -[startTime timeIntervalSinceNow])
@@ -49,6 +49,8 @@ static NSString *const reuseIdentifier = @"videoClipCell";
     NSMutableArray *thumbnailArray;
     NSMutableArray *thumbnailAspectRatioArray;
     NSString *videoFilePathToBePlayed;
+    
+    AVPlayerViewController *avpvc;
 }
 
 -(void)viewDidLoad {
@@ -58,6 +60,7 @@ static NSString *const reuseIdentifier = @"videoClipCell";
     
     numberOfVideoClips = 0;
     videoFilePathToBePlayed = nil;
+    avpvc = nil;
     
     [self.navigationController setNavigationBarHidden:NO];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
@@ -155,11 +158,23 @@ static NSString *const reuseIdentifier = @"videoClipCell";
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
     if ([segue.identifier isEqualToString:@"playVideo"]) {
-        VideoPlayerViewController *destViewController = segue.destinationViewController;
-        destViewController.filePath = videoFilePathToBePlayed;
+        avpvc = segue.destinationViewController;
+        AVPlayer *player = nil;
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        
+        NSString *videoPath = [NSString stringWithFormat:@"%@/%@", documentsDirectory, videoFilePathToBePlayed];
+        NSURL *fileURL = [NSURL fileURLWithPath:videoPath];
+        player = [AVPlayer playerWithURL:fileURL];
+        avpvc.player = player;
+
+        [player play];
+        
     }
 }
+
 
 #pragma mark - UICollectionView Datasource
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {

@@ -18,7 +18,8 @@
 		664E33B3215F9DE700E21B45 /* bg_iphonexs.png in Resources */ = {isa = PBXBuildFile; fileRef = 664E33B2215F9DE700E21B45 /* bg_iphonexs.png */; };
 		6658014E1C255923005AFBD3 /* mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6658014D1C255923005AFBD3 /* mask@2x.png */; };
 		665801511C29150C005AFBD3 /* CaptureVideosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665801501C29150C005AFBD3 /* CaptureVideosViewController.m */; };
-		6658019E1C2C20F9005AFBD3 /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6658019D1C2C20F9005AFBD3 /* VideoPlayerViewController.m */; };
+		6681DE5122513DB9001E860D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6681DE5022513DB9001E860D /* AVFoundation.framework */; };
+		6681DE5322513DC0001E860D /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6681DE5222513DC0001E860D /* AVKit.framework */; };
 		66B283F821CBB7C800BBF8E5 /* bg_iphone6.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B283F721CBB7C800BBF8E5 /* bg_iphone6.png */; };
 		66F5BC811DB50B0D0087A2BA /* bg_iphone6_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F5BC801DB50B0D0087A2BA /* bg_iphone6_plus.png */; };
 		66F5BC831DB50CA90087A2BA /* bg_iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F5BC821DB50CA90087A2BA /* bg_iphone5.png */; };
@@ -44,8 +45,8 @@
 		6658014D1C255923005AFBD3 /* mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mask@2x.png"; sourceTree = "<group>"; };
 		6658014F1C29150C005AFBD3 /* CaptureVideosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureVideosViewController.h; sourceTree = "<group>"; };
 		665801501C29150C005AFBD3 /* CaptureVideosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureVideosViewController.m; sourceTree = "<group>"; };
-		6658019C1C2C20F9005AFBD3 /* VideoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerViewController.h; sourceTree = "<group>"; };
-		6658019D1C2C20F9005AFBD3 /* VideoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewController.m; sourceTree = "<group>"; };
+		6681DE5022513DB9001E860D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		6681DE5222513DC0001E860D /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		66B283F721CBB7C800BBF8E5 /* bg_iphone6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone6.png; sourceTree = "<group>"; };
 		66F5BC801DB50B0D0087A2BA /* bg_iphone6_plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone6_plus.png; sourceTree = "<group>"; };
 		66F5BC821DB50CA90087A2BA /* bg_iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone5.png; sourceTree = "<group>"; };
@@ -57,6 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6681DE5322513DC0001E860D /* AVKit.framework in Frameworks */,
+				6681DE5122513DB9001E860D /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +72,7 @@
 				22CA31B91B0250C300D2DE70 /* README.md */,
 				2206265B1A1E330400A45150 /* AVCam */,
 				2206265A1A1E330400A45150 /* Products */,
+				6681DE4F22513DB9001E860D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,8 +96,6 @@
 				220626871A1E345E00A45150 /* AAPLCameraViewController.m */,
 				6658014F1C29150C005AFBD3 /* CaptureVideosViewController.h */,
 				665801501C29150C005AFBD3 /* CaptureVideosViewController.m */,
-				6658019C1C2C20F9005AFBD3 /* VideoPlayerViewController.h */,
-				6658019D1C2C20F9005AFBD3 /* VideoPlayerViewController.m */,
 				220626661A1E330400A45150 /* Main.storyboard */,
 				220626691A1E330400A45150 /* Images.xcassets */,
 				66F5BC821DB50CA90087A2BA /* bg_iphone5.png */,
@@ -123,6 +125,15 @@
 				6658014D1C255923005AFBD3 /* mask@2x.png */,
 			);
 			name = image;
+			sourceTree = "<group>";
+		};
+		6681DE4F22513DB9001E860D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6681DE5222513DC0001E860D /* AVKit.framework */,
+				6681DE5022513DB9001E860D /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,7 +217,6 @@
 				220626881A1E345E00A45150 /* AAPLAppDelegate.m in Sources */,
 				2206265F1A1E330400A45150 /* main.m in Sources */,
 				665801511C29150C005AFBD3 /* CaptureVideosViewController.m in Sources */,
-				6658019E1C2C20F9005AFBD3 /* VideoPlayerViewController.m in Sources */,
 				220626891A1E345E00A45150 /* AAPLPreviewView.m in Sources */,
 				2206268A1A1E345E00A45150 /* AAPLCameraViewController.m in Sources */,
 			);
