@@ -1,1 +1,9 @@
-*.xcuserstate
+# Xcode
+#
+
+## User settings
+xcuserdata/
+
+# Ignore macOS Finder user-related files
+.DS_Store
+
