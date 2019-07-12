@@ -67,7 +67,9 @@ static NSString *const reuseIdentifier = @"videoClipCell";
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
     NSArray *pathArray = [[NSFileManager defaultManager] subpathsOfDirectoryAtPath:documentsDirectory error:nil];
-    filePathsArray = [NSMutableArray arrayWithArray:[pathArray reversedArray]];
+    ;
+    filePathsArray = [NSMutableArray arrayWithArray:[[self orderPathArrayByTimeDesc:pathArray] reversedArray]];
+    
     numberOfVideoClips = [filePathsArray count];
     
     thumbnailArray = [NSMutableArray new];
@@ -98,6 +100,26 @@ static NSString *const reuseIdentifier = @"videoClipCell";
     
 
 }
+
+- (NSMutableArray *) orderPathArrayByTimeDesc:(NSArray *) pathArray {
+    NSMutableArray *array = [NSMutableArray array];
+
+    for (int i=0; i< [pathArray count]; i++) {
+        NSString *str = pathArray[i];
+//        NSLog(@"%@", str);
+        long long timestampNumber = [[str componentsSeparatedByString:@"."][0] longLongValue];
+        [array addObject:[NSNumber numberWithLongLong:timestampNumber]];
+    }
+    NSArray *sortedArray = [array sortedArrayUsingSelector: @selector(compare:)];
+
+    NSMutableArray * sortedMutableArray = [NSMutableArray array];
+    for (int i = 0; i < [sortedArray count]; i++) {
+        [sortedMutableArray addObject:[NSString stringWithFormat:@"%@.mov", sortedArray[i]]];
+//        NSLog(@"%@", [sortedMutableArray lastObject]);
+    }
+    return sortedMutableArray;
+}
+
 #pragma mark - gesture recognizer callbacks
 
 - (void) cellTapped:(UITapGestureRecognizer *)sender
