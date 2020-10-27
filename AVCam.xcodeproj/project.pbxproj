@@ -19,6 +19,7 @@
 		6658014E1C255923005AFBD3 /* mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6658014D1C255923005AFBD3 /* mask@2x.png */; };
 		665801511C29150C005AFBD3 /* CaptureVideosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665801501C29150C005AFBD3 /* CaptureVideosViewController.m */; };
 		6658019E1C2C20F9005AFBD3 /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6658019D1C2C20F9005AFBD3 /* VideoPlayerViewController.m */; };
+		665C04812547FC290050856B /* bg_iphone12.png in Resources */ = {isa = PBXBuildFile; fileRef = 665C04802547FC290050856B /* bg_iphone12.png */; };
 		66B283F821CBB7C800BBF8E5 /* bg_iphone6.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B283F721CBB7C800BBF8E5 /* bg_iphone6.png */; };
 		66F5BC811DB50B0D0087A2BA /* bg_iphone6_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F5BC801DB50B0D0087A2BA /* bg_iphone6_plus.png */; };
 		66F5BC831DB50CA90087A2BA /* bg_iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F5BC821DB50CA90087A2BA /* bg_iphone5.png */; };
@@ -46,6 +47,7 @@
 		665801501C29150C005AFBD3 /* CaptureVideosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureVideosViewController.m; sourceTree = "<group>"; };
 		6658019C1C2C20F9005AFBD3 /* VideoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerViewController.h; sourceTree = "<group>"; };
 		6658019D1C2C20F9005AFBD3 /* VideoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewController.m; sourceTree = "<group>"; };
+		665C04802547FC290050856B /* bg_iphone12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone12.png; sourceTree = "<group>"; };
 		66B283F721CBB7C800BBF8E5 /* bg_iphone6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone6.png; sourceTree = "<group>"; };
 		66F5BC801DB50B0D0087A2BA /* bg_iphone6_plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone6_plus.png; sourceTree = "<group>"; };
 		66F5BC821DB50CA90087A2BA /* bg_iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone5.png; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				220626831A1E345E00A45150 /* AAPLAppDelegate.m */,
 				220626841A1E345E00A45150 /* AAPLPreviewView.h */,
 				220626851A1E345E00A45150 /* AAPLPreviewView.m */,
+				665C04802547FC290050856B /* bg_iphone12.png */,
 				220626861A1E345E00A45150 /* AAPLCameraViewController.h */,
 				220626871A1E345E00A45150 /* AAPLCameraViewController.m */,
 				6658014F1C29150C005AFBD3 /* CaptureVideosViewController.h */,
@@ -151,7 +154,7 @@
 		220626511A1E330400A45150 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					220626581A1E330400A45150 = {
 						CreatedOnToolsVersion = 6.1;
@@ -190,6 +193,7 @@
 				220626681A1E330400A45150 /* Main.storyboard in Resources */,
 				66F5BC831DB50CA90087A2BA /* bg_iphone5.png in Resources */,
 				6658014E1C255923005AFBD3 /* mask@2x.png in Resources */,
+				665C04812547FC290050856B /* bg_iphone12.png in Resources */,
 				66F5BC811DB50B0D0087A2BA /* bg_iphone6_plus.png in Resources */,
 				2206266A1A1E330400A45150 /* Images.xcassets in Resources */,
 				662225C91CCBCA4E001BE988 /* bg_iphone6.png.bak in Resources */,
@@ -231,17 +235,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -250,6 +266,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -262,7 +279,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -274,17 +291,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -292,13 +321,14 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
