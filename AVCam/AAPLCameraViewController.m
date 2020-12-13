@@ -328,6 +328,11 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
                 [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone12"]];
                 [self.previewView setFrame:CGRectMake(120, 567, 60, 60)];
                 break;
+            case 2778:
+                NSLog(@"IPHONE 12 Pro Max");
+                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone12_max"]];
+                [self.previewView setFrame:CGRectMake(233, 296, 60, 60)];
+                break;
             default:
                 NSLog(@"UNDETERMINED");
         }
