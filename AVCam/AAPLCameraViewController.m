@@ -24,14 +24,6 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 
 // For use in the storyboards.
 @property (nonatomic, weak) IBOutlet AAPLPreviewView *previewView;
-@property (nonatomic, weak) IBOutlet UILabel *cameraUnavailableLabel;
-@property (nonatomic, weak) IBOutlet UIButton *resumeButton;
-@property (nonatomic, weak) IBOutlet UIButton *recordButton;
-@property (nonatomic, weak) IBOutlet UIButton *cameraButton;
-@property (nonatomic, weak) IBOutlet UIButton *stillButton;
-@property (weak, nonatomic) IBOutlet UILabel *crossHairLabel;
-@property (weak, nonatomic) IBOutlet UIView *statusBarIndicator;
-@property (weak, nonatomic) IBOutlet UILabel *callTimerLabel;
 
 // Session management.
 @property (nonatomic) dispatch_queue_t sessionQueue;
@@ -55,6 +47,10 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     CFTimeInterval elapsedTime;
     int tapCounter;
     int callTime;
+    float horizontalSwipeFactor;
+    float zoomFactor;
+    float previousZoomFactor;
+    float opticalZoomFactor;
 }
 
 - (void)viewDidLoad
@@ -72,10 +68,10 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 //    [_maskingLayer setContents:(id)[_maskingImage CGImage]];
 //    [self.previewView.layer setMask:_maskingLayer];
     
-	// Disable UI. The UI is enabled if and only if the session starts running.
-	self.cameraButton.enabled = NO;
-	self.recordButton.enabled = NO;
-	self.stillButton.enabled = NO;
+//	// Disable UI. The UI is enabled if and only if the session starts running.
+//	self.cameraButton.enabled = NO;
+//	self.recordButton.enabled = NO;
+//	self.stillButton.enabled = NO;
 
 	// Create the AVCaptureSession.
 	self.session = [[AVCaptureSession alloc] init];
@@ -160,8 +156,8 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 				if ( statusBarOrientation != UIInterfaceOrientationUnknown ) {
 					initialVideoOrientation = (AVCaptureVideoOrientation)statusBarOrientation;
 				}
-
 				AVCaptureVideoPreviewLayer *previewLayer = (AVCaptureVideoPreviewLayer *)self.previewView.layer;
+                
 				previewLayer.connection.videoOrientation = initialVideoOrientation;
 			} );
 		}
@@ -235,6 +231,9 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     
     callTime = 0;
     tapCounter = 0;
+    horizontalSwipeFactor = 0.0;
+    zoomFactor = 1.0;
+    previousZoomFactor = 1.0;
     
     [self startCountTime];
     dispatch_async( self.sessionQueue, ^{
@@ -296,42 +295,50 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
                 NSLog(@"IPHONE 5,5S,5C");
                 [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone5"]];
                 [self.previewView setFrame:CGRectMake(171, 201, 60, 60)];
+                opticalZoomFactor = 1.0;
                 break;
             case 1334:
                 NSLog(@"IPHONE 6,7,8 IPHONE 6S,7S,8S ");
                 [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone6"]];
                 [self.previewView setFrame:CGRectMake(202, 112, 60, 60)];
+                opticalZoomFactor = 1.0;
                 break;
             case 1920:
             case 2208:
                 NSLog(@"IPHONE 6PLUS, 6SPLUS, 7PLUS, 8PLUS");
                 [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone6_plus"]];
                 [self.previewView setFrame:CGRectMake(225, 138, 60, 60)];
+                opticalZoomFactor = 2.0;
                 break;
             case 2436:
                 NSLog(@"IPHONE X, IPHONE XS");
                 [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphonexs"]];
                 [self.previewView setFrame:CGRectMake(289, 378, 60, 60)];
+                opticalZoomFactor = 2.0;
                 break;
             case 2688:
                 NSLog(@"IPHONE XS_MAX");
                 [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphonexs_max"]];
                 [self.previewView setFrame:CGRectMake(32, 192, 60, 60)];
+                opticalZoomFactor = 2.0;
                 break;
             case 1792:
                 NSLog(@"IPHONE XR");
                 [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphonexr"]];
                 [self.previewView setFrame:CGRectMake(320, 193, 60, 60)];
+                opticalZoomFactor = 1.0;
                 break;
             case 2532:
                 NSLog(@"IPHONE 12");
                 [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone12"]];
                 [self.previewView setFrame:CGRectMake(120, 567, 60, 60)];
+                opticalZoomFactor = 2.0;
                 break;
             case 2778:
                 NSLog(@"IPHONE 12 Pro Max");
                 [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone12_max"]];
                 [self.previewView setFrame:CGRectMake(233, 296, 60, 60)];
+                opticalZoomFactor = 2.5;
                 break;
             default:
                 NSLog(@"UNDETERMINED");
@@ -376,7 +383,8 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 	// Note that the app delegate controls the device orientation notifications required to use the device orientation.
 	UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
 	if ( UIDeviceOrientationIsPortrait( deviceOrientation ) || UIDeviceOrientationIsLandscape( deviceOrientation ) ) {
-		AVCaptureVideoPreviewLayer *previewLayer = (AVCaptureVideoPreviewLayer *)self.previewView.layer;
+
+        AVCaptureVideoPreviewLayer *previewLayer = (AVCaptureVideoPreviewLayer *)self.previewView.layer;
 		previewLayer.connection.videoOrientation = (AVCaptureVideoOrientation)deviceOrientation;
 	}
 }
@@ -411,23 +419,23 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 	if ( context == CapturingStillImageContext ) {
 		BOOL isCapturingStillImage = [change[NSKeyValueChangeNewKey] boolValue];
 
-		if ( isCapturingStillImage ) {
-			dispatch_async( dispatch_get_main_queue(), ^{
-				self.previewView.layer.opacity = 0.0;
-				[UIView animateWithDuration:0.25 animations:^{
-					self.previewView.layer.opacity = 0.6;
-				}];
-			} );
-		}
+//		if ( isCapturingStillImage ) {
+//			dispatch_async( dispatch_get_main_queue(), ^{
+//				self.previewView.layer.opacity = 0.0;
+//				[UIView animateWithDuration:0.25 animations:^{
+//					self.previewView.layer.opacity = 0.6;
+//				}];
+//			} );
+//		}
 	}
 	else if ( context == SessionRunningContext ) {
 		BOOL isSessionRunning = [change[NSKeyValueChangeNewKey] boolValue];
 
 		dispatch_async( dispatch_get_main_queue(), ^{
 			// Only enable the ability to change camera if the device has more than one camera.
-			self.cameraButton.enabled = isSessionRunning && ( [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo].count > 1 );
-			self.recordButton.enabled = isSessionRunning;
-			self.stillButton.enabled = isSessionRunning;
+//			self.cameraButton.enabled = isSessionRunning && ( [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo].count > 1 );
+//			self.recordButton.enabled = isSessionRunning;
+//			self.stillButton.enabled = isSessionRunning;
 		} );
 	}
 	else {
@@ -456,13 +464,13 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 			}
 			else {
 				dispatch_async( dispatch_get_main_queue(), ^{
-					self.resumeButton.hidden = NO;
+//					self.resumeButton.hidden = NO;
 				} );
 			}
 		} );
 	}
 	else {
-		self.resumeButton.hidden = NO;
+//		self.resumeButton.hidden = NO;
 	}
 }
 
@@ -486,11 +494,11 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 		}
 		else if ( reason == AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableWithMultipleForegroundApps ) {
 			// Simply fade-in a label to inform the user that the camera is unavailable.
-			self.cameraUnavailableLabel.hidden = NO;
-			self.cameraUnavailableLabel.alpha = 0.0;
-			[UIView animateWithDuration:0.25 animations:^{
-				self.cameraUnavailableLabel.alpha = 1.0;
-			}];
+//			self.cameraUnavailableLabel.hidden = NO;
+//			self.cameraUnavailableLabel.alpha = 0.0;
+//			[UIView animateWithDuration:0.25 animations:^{
+//				self.cameraUnavailableLabel.alpha = 1.0;
+//			}];
 		}
 	}
 	else {
@@ -500,11 +508,11 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 
 	if ( showResumeButton ) {
 		// Simply fade-in a button to enable the user to try to resume the session running.
-		self.resumeButton.hidden = NO;
-		self.resumeButton.alpha = 0.0;
-		[UIView animateWithDuration:0.25 animations:^{
-			self.resumeButton.alpha = 1.0;
-		}];
+//		self.resumeButton.hidden = NO;
+//		self.resumeButton.alpha = 0.0;
+//		[UIView animateWithDuration:0.25 animations:^{
+//			self.resumeButton.alpha = 1.0;
+//		}];
 	}
 }
 
@@ -512,20 +520,20 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 {
 	NSLog( @"Capture session interruption ended" );
 
-	if ( ! self.resumeButton.hidden ) {
-		[UIView animateWithDuration:0.25 animations:^{
-			self.resumeButton.alpha = 0.0;
-		} completion:^( BOOL finished ) {
-			self.resumeButton.hidden = YES;
-		}];
-	}
-	if ( ! self.cameraUnavailableLabel.hidden ) {
-		[UIView animateWithDuration:0.25 animations:^{
-			self.cameraUnavailableLabel.alpha = 0.0;
-		} completion:^( BOOL finished ) {
-			self.cameraUnavailableLabel.hidden = YES;
-		}];
-	}
+//	if ( ! self.resumeButton.hidden ) {
+//		[UIView animateWithDuration:0.25 animations:^{
+//			self.resumeButton.alpha = 0.0;
+//		} completion:^( BOOL finished ) {
+//			self.resumeButton.hidden = YES;
+//		}];
+//	}
+//	if ( ! self.cameraUnavailableLabel.hidden ) {
+//		[UIView animateWithDuration:0.25 animations:^{
+//			self.cameraUnavailableLabel.alpha = 0.0;
+//		} completion:^( BOOL finished ) {
+//			self.cameraUnavailableLabel.hidden = YES;
+//		}];
+//	}
 }
 
 - (void)applicationEnteredForeground:(NSNotification *)notification {
@@ -555,7 +563,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 		}
 		else {
 			dispatch_async( dispatch_get_main_queue(), ^{
-				self.resumeButton.hidden = YES;
+//				self.resumeButton.hidden = YES;
 			} );
 		}
 	} );
@@ -574,8 +582,8 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 {
 	// Disable the Camera button until recording finishes, and disable the Record button until recording starts or finishes. See the
 	// AVCaptureFileOutputRecordingDelegate methods.
-	self.cameraButton.enabled = NO;
-	self.recordButton.enabled = NO;
+//	self.cameraButton.enabled = NO;
+//	self.recordButton.enabled = NO;
 
 	dispatch_async( self.sessionQueue, ^{
 		if ( ! self.movieFileOutput.isRecording ) {
@@ -590,12 +598,18 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 
 			// Update the orientation on the movie file output video connection before starting recording.
 			AVCaptureConnection *connection = [self.movieFileOutput connectionWithMediaType:AVMediaTypeVideo];
-			AVCaptureVideoPreviewLayer *previewLayer = (AVCaptureVideoPreviewLayer *)self.previewView.layer;
-			connection.videoOrientation = previewLayer.connection.videoOrientation;
+            
+            // To stop the warning of UI updating in background
+            dispatch_async(dispatch_get_main_queue(), ^{
+        
+                AVCaptureVideoPreviewLayer *previewLayer = (AVCaptureVideoPreviewLayer *)self.previewView.layer;
+                connection.videoOrientation = previewLayer.connection.videoOrientation;
+            });
 
 			// Turn OFF flash for video recording.
 			[AAPLCameraViewController setFlashMode:AVCaptureFlashModeOff forDevice:self.videoDeviceInput.device];
-
+            [AAPLCameraViewController setZoomFactor: 1.0 forDevice:self.videoDeviceInput.device];
+            
 			// Start recording to a temporary file.
 //			NSString *outputFileName = [NSProcessInfo processInfo].globallyUniqueString;
 //			NSString *outputFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[outputFileName stringByAppendingPathExtension:@"mov"]];
@@ -612,9 +626,9 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 
 - (IBAction)changeCamera:(id)sender
 {
-	self.cameraButton.enabled = NO;
-	self.recordButton.enabled = NO;
-	self.stillButton.enabled = NO;
+//	self.cameraButton.enabled = NO;
+//	self.recordButton.enabled = NO;
+//	self.stillButton.enabled = NO;
 
 	dispatch_async( self.sessionQueue, ^{
 		AVCaptureDevice *currentVideoDevice = self.videoDeviceInput.device;
@@ -661,81 +675,81 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 		[self.session commitConfiguration];
 
 		dispatch_async( dispatch_get_main_queue(), ^{
-			self.cameraButton.enabled = YES;
-			self.recordButton.enabled = YES;
-			self.stillButton.enabled = YES;
+//			self.cameraButton.enabled = YES;
+//			self.recordButton.enabled = YES;
+//			self.stillButton.enabled = YES;
 		} );
 	} );
 }
 
 - (IBAction)snapStillImage:(id)sender
 {
-	dispatch_async( self.sessionQueue, ^{
-		AVCaptureConnection *connection = [self.stillImageOutput connectionWithMediaType:AVMediaTypeVideo];
-		AVCaptureVideoPreviewLayer *previewLayer = (AVCaptureVideoPreviewLayer *)self.previewView.layer;
-
-		// Update the orientation on the still image output video connection before capturing.
-		connection.videoOrientation = previewLayer.connection.videoOrientation;
-
-		// Flash set to Auto for Still Capture.
-		[AAPLCameraViewController setFlashMode:AVCaptureFlashModeAuto forDevice:self.videoDeviceInput.device];
-
-		// Capture a still image.
-		[self.stillImageOutput captureStillImageAsynchronouslyFromConnection:connection completionHandler:^( CMSampleBufferRef imageDataSampleBuffer, NSError *error ) {
-			if ( imageDataSampleBuffer ) {
-				// The sample buffer is not retained. Create image data before saving the still image to the photo library asynchronously.
-				NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
-				[PHPhotoLibrary requestAuthorization:^( PHAuthorizationStatus status ) {
-					if ( status == PHAuthorizationStatusAuthorized ) {
-						// To preserve the metadata, we create an asset from the JPEG NSData representation.
-						// Note that creating an asset from a UIImage discards the metadata.
-						// In iOS 9, we can use -[PHAssetCreationRequest addResourceWithType:data:options].
-						// In iOS 8, we save the image to a temporary file and use +[PHAssetChangeRequest creationRequestForAssetFromImageAtFileURL:].
-						if ( [PHAssetCreationRequest class] ) {
-							[[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-								[[PHAssetCreationRequest creationRequestForAsset] addResourceWithType:PHAssetResourceTypePhoto data:imageData options:nil];
-							} completionHandler:^( BOOL success, NSError *error ) {
-								if ( ! success ) {
-									NSLog( @"Error occurred while saving image to photo library: %@", error );
-								}
-							}];
-						}
-						else {
-							NSString *temporaryFileName = [NSProcessInfo processInfo].globallyUniqueString;
-							NSString *temporaryFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[temporaryFileName stringByAppendingPathExtension:@"jpg"]];
-							NSURL *temporaryFileURL = [NSURL fileURLWithPath:temporaryFilePath];
-
-							[[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-								NSError *error = nil;
-								[imageData writeToURL:temporaryFileURL options:NSDataWritingAtomic error:&error];
-								if ( error ) {
-									NSLog( @"Error occured while writing image data to a temporary file: %@", error );
-								}
-								else {
-									[PHAssetChangeRequest creationRequestForAssetFromImageAtFileURL:temporaryFileURL];
-								}
-							} completionHandler:^( BOOL success, NSError *error ) {
-								if ( ! success ) {
-									NSLog( @"Error occurred while saving image to photo library: %@", error );
-								}
-
-								// Delete the temporary file.
-								[[NSFileManager defaultManager] removeItemAtURL:temporaryFileURL error:nil];
-							}];
-						}
-					}
-				}];
-			}
-			else {
-				NSLog( @"Could not capture still image: %@", error );
-			}
-		}];
-	} );
+//	dispatch_async( self.sessionQueue, ^{
+//		AVCaptureConnection *connection = [self.stillImageOutput connectionWithMediaType:AVMediaTypeVideo];
+//		AVCaptureVideoPreviewLayer *previewLayer = (AVCaptureVideoPreviewLayer *)self.previewView.layer;
+//
+//		// Update the orientation on the still image output video connection before capturing.
+//		connection.videoOrientation = previewLayer.connection.videoOrientation;
+//
+//		// Flash set to Auto for Still Capture.
+//		[AAPLCameraViewController setFlashMode:AVCaptureFlashModeAuto forDevice:self.videoDeviceInput.device];
+//
+//		// Capture a still image.
+//		[self.stillImageOutput captureStillImageAsynchronouslyFromConnection:connection completionHandler:^( CMSampleBufferRef imageDataSampleBuffer, NSError *error ) {
+//			if ( imageDataSampleBuffer ) {
+//				// The sample buffer is not retained. Create image data before saving the still image to the photo library asynchronously.
+//				NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
+//				[PHPhotoLibrary requestAuthorization:^( PHAuthorizationStatus status ) {
+//					if ( status == PHAuthorizationStatusAuthorized ) {
+//						// To preserve the metadata, we create an asset from the JPEG NSData representation.
+//						// Note that creating an asset from a UIImage discards the metadata.
+//						// In iOS 9, we can use -[PHAssetCreationRequest addResourceWithType:data:options].
+//						// In iOS 8, we save the image to a temporary file and use +[PHAssetChangeRequest creationRequestForAssetFromImageAtFileURL:].
+//						if ( [PHAssetCreationRequest class] ) {
+//							[[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+//								[[PHAssetCreationRequest creationRequestForAsset] addResourceWithType:PHAssetResourceTypePhoto data:imageData options:nil];
+//							} completionHandler:^( BOOL success, NSError *error ) {
+//								if ( ! success ) {
+//									NSLog( @"Error occurred while saving image to photo library: %@", error );
+//								}
+//							}];
+//						}
+//						else {
+//							NSString *temporaryFileName = [NSProcessInfo processInfo].globallyUniqueString;
+//							NSString *temporaryFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[temporaryFileName stringByAppendingPathExtension:@"jpg"]];
+//							NSURL *temporaryFileURL = [NSURL fileURLWithPath:temporaryFilePath];
+//
+//							[[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+//								NSError *error = nil;
+//								[imageData writeToURL:temporaryFileURL options:NSDataWritingAtomic error:&error];
+//								if ( error ) {
+//									NSLog( @"Error occured while writing image data to a temporary file: %@", error );
+//								}
+//								else {
+//									[PHAssetChangeRequest creationRequestForAssetFromImageAtFileURL:temporaryFileURL];
+//								}
+//							} completionHandler:^( BOOL success, NSError *error ) {
+//								if ( ! success ) {
+//									NSLog( @"Error occurred while saving image to photo library: %@", error );
+//								}
+//
+//								// Delete the temporary file.
+//								[[NSFileManager defaultManager] removeItemAtURL:temporaryFileURL error:nil];
+//							}];
+//						}
+//					}
+//				}];
+//			}
+//			else {
+//				NSLog( @"Could not capture still image: %@", error );
+//			}
+//		}];
+//	} );
 }
 
 - (IBAction)focusAndExposeTap:(UIGestureRecognizer *)gestureRecognizer
 {
-	CGPoint devicePoint = [(AVCaptureVideoPreviewLayer *)self.previewView.layer captureDevicePointOfInterestForPoint:[gestureRecognizer locationInView:gestureRecognizer.view]];
+    CGPoint devicePoint = [(AVCaptureVideoPreviewLayer *)self.previewView.layer captureDevicePointOfInterestForPoint:[gestureRecognizer locationInView:gestureRecognizer.view]];
 	[self focusWithMode:AVCaptureFocusModeAutoFocus exposeWithMode:AVCaptureExposureModeAutoExpose atDevicePoint:devicePoint monitorSubjectAreaChange:YES];
 }
 - (IBAction)exitButtonPressed:(id)sender {
@@ -825,8 +839,8 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
         [self setPreviewImageViewClear];
         callTime = 0;
 //        self.statusBarIndicator.backgroundColor = [UIColor colorWithRed:0.5 green:0.1 blue:0 alpha:0.5];
-		self.recordButton.enabled = YES;
-		[self.recordButton setTitle:NSLocalizedString( @"Stop", @"Recording button stop title") forState:UIControlStateNormal];
+//		self.recordButton.enabled = YES;
+//		[self.recordButton setTitle:NSLocalizedString( @"Stop", @"Recording button stop title") forState:UIControlStateNormal];
 	});
 }
 
@@ -891,9 +905,9 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 //        self.statusBarIndicator.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
 
 		// Only enable the ability to change camera if the device has more than one camera.
-		self.cameraButton.enabled = ( [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo].count > 1 );
-		self.recordButton.enabled = YES;
-		[self.recordButton setTitle:NSLocalizedString( @"Record", @"Recording button record title" ) forState:UIControlStateNormal];
+//		self.cameraButton.enabled = ( [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo].count > 1 );
+//		self.recordButton.enabled = YES;
+//		[self.recordButton setTitle:NSLocalizedString( @"Record", @"Recording button record title" ) forState:UIControlStateNormal];
 	});
 }
 
@@ -911,7 +925,31 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 
 - (void) touchesMoved:(NSSet *)touches
             withEvent:(UIEvent *)event {
+    UITouch *touch = [touches anyObject];
+    CGPoint point = [touch locationInView:self.view];
+    CGFloat pointX = point.x;
+    CGFloat pointY = point.y;
+    CGFloat xDist = (pointX - lastTouchedPointX);
+    CGFloat yDist = (pointY - lastTouchedPointY);
+    CGFloat distance = sqrt((xDist * xDist) + (yDist * yDist));
+    CGFloat xDisplacement = pointX - lastTouchedPointX;
     
+    // handle horizontal swipe for zoom
+    horizontalSwipeFactor = xDisplacement / 100.0;
+    zoomFactor = previousZoomFactor + horizontalSwipeFactor;
+    zoomFactor = zoomFactor > opticalZoomFactor ?opticalZoomFactor : zoomFactor;
+    zoomFactor = zoomFactor < 1.0 ? 1.0 : zoomFactor;
+    
+    if (self.movieFileOutput.isRecording == YES) {
+        NSLog(@"horizontalSwipefactor= %f", horizontalSwipeFactor);
+        NSLog(@"zoomFactor= %f", zoomFactor);
+        [AAPLCameraViewController setZoomFactor: zoomFactor forDevice:self.videoDeviceInput.device];
+    }
+
+    // clean tapCounter if swiping
+    if (distance >= 20.0) {
+        tapCounter = 0;
+    }
 }
 
 - (void) touchesEnded:(NSSet *)touches
@@ -925,39 +963,53 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     CGFloat xDist = (pointX - lastTouchedPointX);
     CGFloat yDist = (pointY - lastTouchedPointY);
     CGFloat distance = sqrt((xDist * xDist) + (yDist * yDist));
+    CGFloat yDisplacement = pointY - lastTouchedPointY;
     
     //    NSLog(@"moved distance %.0f",distance);
     
+    // store current zoom factor
+    previousZoomFactor =  zoomFactor;
+    
     //handle tap gesture
     
-    if (self.movieFileOutput.isRecording == YES) {
-        tapCounter = 0;
-        [self toggleMovieRecording:nil];
-        return;
-    }
-    
+    // start timer for the first tap
     if (tapCounter == 0) {
         startTime = CACurrentMediaTime();
     }
     
     elapsedTime = CACurrentMediaTime() - startTime;
     
+    // defining what a single and a double tap are
     if (elapsedTime > 0.8) {
         tapCounter = 0;
-    } else if (distance < 20.0) {
+    } else if (distance < 20.0 && elapsedTime < 0.3) {
         tapCounter++;
+    } else {
+        tapCounter = 0;
     }
-    NSLog(@"tapCounter = %d", tapCounter);
 
     if (tapCounter >= 2) {
         tapCounter = 0;
         [self showCollectionView];
     }
+    NSLog(@"tapCounter = %d", tapCounter);
     
-    
+    // handle swipe down gesture. Start recording
     if (yDist >= 80.0  && elapsedTime > 0.0 && (self.movieFileOutput.isRecording == NO)) {
+        
+        tapCounter = 0; // not a tap. it is a swipe. safeguard. it should be 0 anyway! for it will be cleaned when distance
+        
         [self setPreviewImageViewClear];
         [self toggleMovieRecording:nil];
+        return;
+    }
+    
+    // turn off recording
+    if (self.movieFileOutput.isRecording == YES && tapCounter > 0) {
+        tapCounter = 0;
+        [self toggleMovieRecording:nil];
+        zoomFactor = 1.0;
+        
         return;
     }
 
@@ -965,14 +1017,13 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 
 - (void)setPreviewImageViewClear {
     self.previewView.alpha = 0.6;
-    [self.crossHairLabel setHidden:NO];
+//    [self.crossHairLabel setHidden:NO];
     
 }
 
 - (void)setPreviewImageViewVague {
-    
     self.previewView.alpha = 0.0;
-    [self.crossHairLabel setHidden:YES];
+//    [self.crossHairLabel setHidden:YES];
     
 }
 
@@ -1019,6 +1070,21 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 	}
 }
 
++ (void)setZoomFactor:(double)zoomFactor forDevice:(AVCaptureDevice *)device
+{
+//    NSLog(@"minAvailableVideoZoomFactor = %f",  device.minAvailableVideoZoomFactor);
+    if (zoomFactor<= device.maxAvailableVideoZoomFactor && zoomFactor>= device.minAvailableVideoZoomFactor) {
+        NSError *error = nil;
+        if ( [device lockForConfiguration:&error] ) {
+            device.videoZoomFactor = zoomFactor;
+            [device unlockForConfiguration];
+        }
+        else {
+            NSLog( @"Could not lock device for configuration: %@", error );
+        }
+    }
+}
+
 + (AVCaptureDevice *)deviceWithMediaType:(NSString *)mediaType preferringPosition:(AVCaptureDevicePosition)position
 {
 	NSArray *devices = [AVCaptureDevice devicesWithMediaType:mediaType];
@@ -1043,7 +1109,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 -(void)updateLabel:(id)sender {
     dispatch_async(dispatch_get_main_queue(), ^{
         callTime++;
-        self.callTimerLabel.text = [NSString stringWithFormat:@"%d:%02d", callTime /60, callTime % 60];
+//        self.callTimerLabel.text = [NSString stringWithFormat:@"%d:%02d", callTime /60, callTime % 60];
     });
 }
 #pragma mark - callback

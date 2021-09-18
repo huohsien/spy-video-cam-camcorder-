@@ -12,4 +12,5 @@ View controller for camera interface.
 @interface AAPLCameraViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+
 @end
