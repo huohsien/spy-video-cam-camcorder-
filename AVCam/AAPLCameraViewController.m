@@ -20,6 +20,14 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 	AVCamSetupResultSessionConfigurationFailed
 };
 
+@interface UINavigationController(custom)
+@end
+@implementation UINavigationController(custom)
+-(UIViewController *)childViewControllerForHomeIndicatorAutoHidden{
+    return [self.storyboard  instantiateViewControllerWithIdentifier:@"AAPLCameraViewController"];
+}
+@end
+
 @interface AAPLCameraViewController () <AVCaptureFileOutputRecordingDelegate, AVCaptureVideoDataOutputSampleBufferDelegate>
 
 // For use in the storyboards.
@@ -356,12 +364,18 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 	} );
 
 	[super viewDidDisappear:animated];
+    NSLog(@"hide the visual indicator for returning to the home screen");
+    if (@available(iOS 11.0, *)) {
+        [self setNeedsUpdateOfHomeIndicatorAutoHidden];
+       }
 }
 
--(BOOL)prefersStatusBarHidden{
+-(BOOL)prefersStatusBarHidden {
     return YES;
 }
-
+-(BOOL)prefersHomeIndicatorAutoHidden {
+    return YES;
+}
 
 #pragma mark Orientation
 
