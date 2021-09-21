@@ -92,7 +92,6 @@
 				220626831A1E345E00A45150 /* AAPLAppDelegate.m */,
 				220626841A1E345E00A45150 /* AAPLPreviewView.h */,
 				220626851A1E345E00A45150 /* AAPLPreviewView.m */,
-				665C04802547FC290050856B /* bg_iphone12.png */,
 				220626861A1E345E00A45150 /* AAPLCameraViewController.h */,
 				220626871A1E345E00A45150 /* AAPLCameraViewController.m */,
 				6658014F1C29150C005AFBD3 /* CaptureVideosViewController.h */,
@@ -100,15 +99,6 @@
 				6658019C1C2C20F9005AFBD3 /* VideoPlayerViewController.h */,
 				6658019D1C2C20F9005AFBD3 /* VideoPlayerViewController.m */,
 				220626661A1E330400A45150 /* Main.storyboard */,
-				220626691A1E330400A45150 /* Images.xcassets */,
-				660CC1F1258673D1007A8C5D /* bg_iphone12_max.png */,
-				664CA43322C2450C0094DAD6 /* bg_iphonexr.png */,
-				66F5BC821DB50CA90087A2BA /* bg_iphone5.png */,
-				66FA2DCE21622E1900E71F73 /* bg_iphonexs_max.png */,
-				66B283F721CBB7C800BBF8E5 /* bg_iphone6.png */,
-				664E33B2215F9DE700E21B45 /* bg_iphonexs.png */,
-				662225C81CCBCA4E001BE988 /* bg_iphone6.png.bak */,
-				66F5BC801DB50B0D0087A2BA /* bg_iphone6_plus.png */,
 				2206265C1A1E330400A45150 /* Supporting Files */,
 			);
 			path = AVCam;
@@ -117,6 +107,8 @@
 		2206265C1A1E330400A45150 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				220626691A1E330400A45150 /* Images.xcassets */,
+				665BFB8226FA8EE800E6F370 /* bg_images */,
 				2206265D1A1E330400A45150 /* Info.plist */,
 				2206265E1A1E330400A45150 /* main.m */,
 			);
@@ -129,6 +121,22 @@
 				6658014D1C255923005AFBD3 /* mask@2x.png */,
 			);
 			name = image;
+			sourceTree = "<group>";
+		};
+		665BFB8226FA8EE800E6F370 /* bg_images */ = {
+			isa = PBXGroup;
+			children = (
+				660CC1F1258673D1007A8C5D /* bg_iphone12_max.png */,
+				664CA43322C2450C0094DAD6 /* bg_iphonexr.png */,
+				66F5BC821DB50CA90087A2BA /* bg_iphone5.png */,
+				66FA2DCE21622E1900E71F73 /* bg_iphonexs_max.png */,
+				66B283F721CBB7C800BBF8E5 /* bg_iphone6.png */,
+				664E33B2215F9DE700E21B45 /* bg_iphonexs.png */,
+				662225C81CCBCA4E001BE988 /* bg_iphone6.png.bak */,
+				66F5BC801DB50B0D0087A2BA /* bg_iphone6_plus.png */,
+				665C04802547FC290050856B /* bg_iphone12.png */,
+			);
+			name = bg_images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
