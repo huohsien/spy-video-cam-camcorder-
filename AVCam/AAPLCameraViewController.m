@@ -329,6 +329,12 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
                 [self.previewView setFrame:CGRectMake(233, 296, 60, 60)];
                 opticalZoomFactor = 2.5;
                 break;
+            case 2340:
+                NSLog(@"IPHONE 12 mini");
+                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone12_mini"]];
+                [self.previewView setFrame:CGRectMake(202, 77, 60, 60)];
+                opticalZoomFactor = 2;
+                break;
             default:
                 NSLog(@"UNDETERMINED");
         }

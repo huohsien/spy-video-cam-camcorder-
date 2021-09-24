@@ -21,6 +21,7 @@
 		665801511C29150C005AFBD3 /* CaptureVideosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665801501C29150C005AFBD3 /* CaptureVideosViewController.m */; };
 		6658019E1C2C20F9005AFBD3 /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6658019D1C2C20F9005AFBD3 /* VideoPlayerViewController.m */; };
 		665C04812547FC290050856B /* bg_iphone12.png in Resources */ = {isa = PBXBuildFile; fileRef = 665C04802547FC290050856B /* bg_iphone12.png */; };
+		6698532D26FD06B500C798B0 /* bg_iphone12_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 6698532C26FD06B500C798B0 /* bg_iphone12_mini.png */; };
 		66B283F821CBB7C800BBF8E5 /* bg_iphone6.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B283F721CBB7C800BBF8E5 /* bg_iphone6.png */; };
 		66F5BC811DB50B0D0087A2BA /* bg_iphone6_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F5BC801DB50B0D0087A2BA /* bg_iphone6_plus.png */; };
 		66F5BC831DB50CA90087A2BA /* bg_iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F5BC821DB50CA90087A2BA /* bg_iphone5.png */; };
@@ -50,6 +51,7 @@
 		6658019C1C2C20F9005AFBD3 /* VideoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerViewController.h; sourceTree = "<group>"; };
 		6658019D1C2C20F9005AFBD3 /* VideoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewController.m; sourceTree = "<group>"; };
 		665C04802547FC290050856B /* bg_iphone12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone12.png; sourceTree = "<group>"; };
+		6698532C26FD06B500C798B0 /* bg_iphone12_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone12_mini.png; sourceTree = "<group>"; };
 		66B283F721CBB7C800BBF8E5 /* bg_iphone6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone6.png; sourceTree = "<group>"; };
 		66F5BC801DB50B0D0087A2BA /* bg_iphone6_plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone6_plus.png; sourceTree = "<group>"; };
 		66F5BC821DB50CA90087A2BA /* bg_iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone5.png; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				660CC1F1258673D1007A8C5D /* bg_iphone12_max.png */,
 				664CA43322C2450C0094DAD6 /* bg_iphonexr.png */,
 				66F5BC821DB50CA90087A2BA /* bg_iphone5.png */,
+				6698532C26FD06B500C798B0 /* bg_iphone12_mini.png */,
 				66FA2DCE21622E1900E71F73 /* bg_iphonexs_max.png */,
 				66B283F721CBB7C800BBF8E5 /* bg_iphone6.png */,
 				664E33B2215F9DE700E21B45 /* bg_iphonexs.png */,
@@ -209,6 +212,7 @@
 				66F5BC811DB50B0D0087A2BA /* bg_iphone6_plus.png in Resources */,
 				2206266A1A1E330400A45150 /* Images.xcassets in Resources */,
 				662225C91CCBCA4E001BE988 /* bg_iphone6.png.bak in Resources */,
+				6698532D26FD06B500C798B0 /* bg_iphone12_mini.png in Resources */,
 				664CA43422C2450C0094DAD6 /* bg_iphonexr.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,7 +295,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -340,7 +344,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

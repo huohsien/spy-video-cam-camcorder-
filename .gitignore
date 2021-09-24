@@ -6,4 +6,5 @@ xcuserdata/
 
 # Ignore macOS Finder user-related files
 .DS_Store
-
+# out of no where since update to XCode 12
+._*
