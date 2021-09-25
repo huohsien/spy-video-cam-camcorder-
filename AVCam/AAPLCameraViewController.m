@@ -20,13 +20,13 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 	AVCamSetupResultSessionConfigurationFailed
 };
 
-@interface UINavigationController(custom)
-@end
-@implementation UINavigationController(custom)
--(UIViewController *)childViewControllerForHomeIndicatorAutoHidden{
-    return [self.storyboard  instantiateViewControllerWithIdentifier:@"AAPLCameraViewController"];
-}
-@end
+//@interface UINavigationController(custom)
+//@end
+//@implementation UINavigationController(custom)
+//-(UIViewController *)childViewControllerForHomeIndicatorAutoHidden{
+//    return [self.storyboard  instantiateViewControllerWithIdentifier:@"AAPLCameraViewController"];
+//}
+//@end
 
 @interface AAPLCameraViewController () <AVCaptureFileOutputRecordingDelegate, AVCaptureVideoDataOutputSampleBufferDelegate>
 
