@@ -1,6 +1,7 @@
 @import AVFoundation;
 @import Photos;
 
+#import <sys/utsname.h>
 #import "AAPLCameraViewController.h"
 
 static void * CapturingStillImageContext = &CapturingStillImageContext;
@@ -276,68 +277,83 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     NSLog(@"%@", NSStringFromCGRect(previewRect));
    
     if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        
+        struct utsname systemInfo;
+        uname(&systemInfo);
+
+        NSString* deviceModel = [NSString stringWithCString:systemInfo.machine
+                                  encoding:NSUTF8StringEncoding];
+        NSLog(@"deviceModel= %@", deviceModel);
+        
+        if ([deviceModel isEqual: @"iPhone14,3"]) {
+            NSLog(@"IPHONE 13 Pro Max");
+            [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone13_max"]];
+            [self.previewView setFrame:CGRectMake(27, 68, 60, 60)];
+            opticalZoomFactor = 3.0;
+        }
+
         int height = (int) UIScreen.mainScreen.nativeBounds.size.height;
         int width = (int) UIScreen.mainScreen.nativeBounds.size.width;
         NSLog(@"height = %d, widht = %d", height, width);
-        switch (height) {
-            case 1136:
-                NSLog(@"IPHONE 5,5S,5C");
-                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone5"]];
-                [self.previewView setFrame:CGRectMake(171, 201, 60, 60)];
-                opticalZoomFactor = 1.0;
-                break;
-            case 1334:
-                NSLog(@"IPHONE 6,7,8 IPHONE 6S,7S,8S ");
-                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone6"]];
-                [self.previewView setFrame:CGRectMake(202, 112, 60, 60)];
-                opticalZoomFactor = 1.0;
-                break;
-            case 1920:
-            case 2208:
-                NSLog(@"IPHONE 6PLUS, 6SPLUS, 7PLUS, 8PLUS");
-                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone6_plus"]];
-                [self.previewView setFrame:CGRectMake(225, 138, 60, 60)];
-                opticalZoomFactor = 2.0;
-                break;
-            case 2436:
-                NSLog(@"IPHONE X, IPHONE XS");
-                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphonexs"]];
-                [self.previewView setFrame:CGRectMake(289, 378, 60, 60)];
-                opticalZoomFactor = 2.0;
-                break;
-            case 2688:
-                NSLog(@"IPHONE XS_MAX");
-                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphonexs_max"]];
-                [self.previewView setFrame:CGRectMake(32, 192, 60, 60)];
-                opticalZoomFactor = 2.0;
-                break;
-            case 1792:
-                NSLog(@"IPHONE XR");
-                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphonexr"]];
-                [self.previewView setFrame:CGRectMake(320, 193, 60, 60)];
-                opticalZoomFactor = 1.0;
-                break;
-            case 2532:
-                NSLog(@"IPHONE 12");
-                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone12"]];
-                [self.previewView setFrame:CGRectMake(120, 567, 60, 60)];
-                opticalZoomFactor = 2.0;
-                break;
-            case 2778:
-                NSLog(@"IPHONE 12 Pro Max");
-                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone12_max"]];
-                [self.previewView setFrame:CGRectMake(233, 296, 60, 60)];
-                opticalZoomFactor = 2.5;
-                break;
-            case 2340:
-                NSLog(@"IPHONE 12 mini");
-                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone12_mini"]];
-                [self.previewView setFrame:CGRectMake(202, 77, 60, 60)];
-                opticalZoomFactor = 2;
-                break;
-            default:
-                NSLog(@"UNDETERMINED");
-        }
+//        switch (height) {
+//            case 1136:
+//                NSLog(@"IPHONE 5,5S,5C");
+//                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone5"]];
+//                [self.previewView setFrame:CGRectMake(171, 201, 60, 60)];
+//                opticalZoomFactor = 1.0;
+//                break;
+//            case 1334:
+//                NSLog(@"IPHONE 6,7,8 IPHONE 6S,7S,8S ");
+//                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone6"]];
+//                [self.previewView setFrame:CGRectMake(202, 112, 60, 60)];
+//                opticalZoomFactor = 1.0;
+//                break;
+//            case 1920:
+//            case 2208:
+//                NSLog(@"IPHONE 6PLUS, 6SPLUS, 7PLUS, 8PLUS");
+//                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone6_plus"]];
+//                [self.previewView setFrame:CGRectMake(225, 138, 60, 60)];
+//                opticalZoomFactor = 2.0;
+//                break;
+//            case 2436:
+//                NSLog(@"IPHONE X, IPHONE XS");
+//                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphonexs"]];
+//                [self.previewView setFrame:CGRectMake(289, 378, 60, 60)];
+//                opticalZoomFactor = 2.0;
+//                break;
+//            case 2688:
+//                NSLog(@"IPHONE XS_MAX");
+//                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphonexs_max"]];
+//                [self.previewView setFrame:CGRectMake(32, 192, 60, 60)];
+//                opticalZoomFactor = 2.0;
+//                break;
+//            case 1792:
+//                NSLog(@"IPHONE XR");
+//                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphonexr"]];
+//                [self.previewView setFrame:CGRectMake(320, 193, 60, 60)];
+//                opticalZoomFactor = 1.0;
+//                break;
+//            case 2532:
+//                NSLog(@"IPHONE 12");
+//                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone12"]];
+//                [self.previewView setFrame:CGRectMake(120, 567, 60, 60)];
+//                opticalZoomFactor = 2.0;
+//                break;
+//            case 2778:
+//                NSLog(@"IPHONE 12 Pro Max");
+//                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone12_max"]];
+//                [self.previewView setFrame:CGRectMake(233, 296, 60, 60)];
+//                opticalZoomFactor = 2.5;
+//                break;
+//            case 2340:
+//                NSLog(@"IPHONE 12 mini");
+//                [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone12_mini"]];
+//                [self.previewView setFrame:CGRectMake(202, 77, 60, 60)];
+//                opticalZoomFactor = 2;
+//                break;
+//            default:
+//                NSLog(@"UNDETERMINED");
+//        }
     }
 }
 
@@ -704,7 +720,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 }
 
 - (void)setPreviewImageViewClear {
-    self.previewView.alpha = 0.6;
+    self.previewView.alpha = 0.3;
 }
 
 - (void)setPreviewImageViewVague {
