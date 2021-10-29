@@ -290,6 +290,11 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
             [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone13_max"]];
             [self.previewView setFrame:CGRectMake(27, 68, 60, 60)];
             opticalZoomFactor = 3.0;
+        } else if ([deviceModel isEqual: @"iPhone14,4"]) {
+            NSLog(@"IPHONE 13 mini");
+            [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone12_mini"]];
+            [self.previewView setFrame:CGRectMake(202, 77, 60, 60)];
+            opticalZoomFactor = 2.0;
         }
 
         int height = (int) UIScreen.mainScreen.nativeBounds.size.height;
