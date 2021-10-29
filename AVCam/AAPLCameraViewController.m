@@ -295,6 +295,11 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
             [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone12_mini"]];
             [self.previewView setFrame:CGRectMake(202, 77, 60, 60)];
             opticalZoomFactor = 2.0;
+        } else if ([deviceModel isEqual: @"iPhone14,2"]) {
+            NSLog(@"IPHONE 13 Pro");
+            [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone13"]];
+            [self.previewView setFrame:CGRectMake(300, 567, 60, 60)];
+            opticalZoomFactor = 3.0;
         }
 
         int height = (int) UIScreen.mainScreen.nativeBounds.size.height;
@@ -725,7 +730,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 }
 
 - (void)setPreviewImageViewClear {
-    self.previewView.alpha = 0.3;
+    self.previewView.alpha = 0.6;
 }
 
 - (void)setPreviewImageViewVague {
