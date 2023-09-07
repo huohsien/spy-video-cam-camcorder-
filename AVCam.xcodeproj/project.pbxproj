@@ -22,12 +22,13 @@
 		665801511C29150C005AFBD3 /* CaptureVideosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665801501C29150C005AFBD3 /* CaptureVideosViewController.m */; };
 		6658019E1C2C20F9005AFBD3 /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6658019D1C2C20F9005AFBD3 /* VideoPlayerViewController.m */; };
 		665C04812547FC290050856B /* bg_iphone12.png in Resources */ = {isa = PBXBuildFile; fileRef = 665C04802547FC290050856B /* bg_iphone12.png */; };
-		6690E5BA271038E200DCE403 /* bg_iphone13_max.png in Resources */ = {isa = PBXBuildFile; fileRef = 6690E5B9271038E200DCE403 /* bg_iphone13_max.png */; };
 		6698532D26FD06B500C798B0 /* bg_iphone12_mini.png in Resources */ = {isa = PBXBuildFile; fileRef = 6698532C26FD06B500C798B0 /* bg_iphone12_mini.png */; };
 		66B283F821CBB7C800BBF8E5 /* bg_iphone6.png in Resources */ = {isa = PBXBuildFile; fileRef = 66B283F721CBB7C800BBF8E5 /* bg_iphone6.png */; };
+		66CB8B382A795F8E008B6F2D /* bg_iphone14_max.png in Resources */ = {isa = PBXBuildFile; fileRef = 66CB8B372A795F8D008B6F2D /* bg_iphone14_max.png */; };
 		66F5BC811DB50B0D0087A2BA /* bg_iphone6_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F5BC801DB50B0D0087A2BA /* bg_iphone6_plus.png */; };
 		66F5BC831DB50CA90087A2BA /* bg_iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F5BC821DB50CA90087A2BA /* bg_iphone5.png */; };
 		66FA2DCF21622E1900E71F73 /* bg_iphonexs_max.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FA2DCE21622E1900E71F73 /* bg_iphonexs_max.png */; };
+		66FB1740274E98D60096985A /* bg_iphone13_max.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FB173F274E98D60096985A /* bg_iphone13_max.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,12 +55,13 @@
 		6658019C1C2C20F9005AFBD3 /* VideoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerViewController.h; sourceTree = "<group>"; };
 		6658019D1C2C20F9005AFBD3 /* VideoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewController.m; sourceTree = "<group>"; };
 		665C04802547FC290050856B /* bg_iphone12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone12.png; sourceTree = "<group>"; };
-		6690E5B9271038E200DCE403 /* bg_iphone13_max.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone13_max.png; sourceTree = "<group>"; };
 		6698532C26FD06B500C798B0 /* bg_iphone12_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone12_mini.png; sourceTree = "<group>"; };
 		66B283F721CBB7C800BBF8E5 /* bg_iphone6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone6.png; sourceTree = "<group>"; };
+		66CB8B372A795F8D008B6F2D /* bg_iphone14_max.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone14_max.png; sourceTree = "<group>"; };
 		66F5BC801DB50B0D0087A2BA /* bg_iphone6_plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone6_plus.png; sourceTree = "<group>"; };
 		66F5BC821DB50CA90087A2BA /* bg_iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone5.png; sourceTree = "<group>"; };
 		66FA2DCE21622E1900E71F73 /* bg_iphonexs_max.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphonexs_max.png; sourceTree = "<group>"; };
+		66FB173F274E98D60096985A /* bg_iphone13_max.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_iphone13_max.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,8 +134,9 @@
 		665BFB8226FA8EE800E6F370 /* bg_images */ = {
 			isa = PBXGroup;
 			children = (
+				66CB8B372A795F8D008B6F2D /* bg_iphone14_max.png */,
 				6618E87F272C058D00CFC449 /* bg_iphone13.png */,
-				6690E5B9271038E200DCE403 /* bg_iphone13_max.png */,
+				66FB173F274E98D60096985A /* bg_iphone13_max.png */,
 				660CC1F1258673D1007A8C5D /* bg_iphone12_max.png */,
 				664CA43322C2450C0094DAD6 /* bg_iphonexr.png */,
 				66F5BC821DB50CA90087A2BA /* bg_iphone5.png */,
@@ -212,16 +215,17 @@
 				66B283F821CBB7C800BBF8E5 /* bg_iphone6.png in Resources */,
 				220626681A1E330400A45150 /* Main.storyboard in Resources */,
 				66F5BC831DB50CA90087A2BA /* bg_iphone5.png in Resources */,
-				6690E5BA271038E200DCE403 /* bg_iphone13_max.png in Resources */,
 				660CC1F2258673D1007A8C5D /* bg_iphone12_max.png in Resources */,
 				6658014E1C255923005AFBD3 /* mask@2x.png in Resources */,
 				665C04812547FC290050856B /* bg_iphone12.png in Resources */,
 				66F5BC811DB50B0D0087A2BA /* bg_iphone6_plus.png in Resources */,
 				2206266A1A1E330400A45150 /* Images.xcassets in Resources */,
 				662225C91CCBCA4E001BE988 /* bg_iphone6.png.bak in Resources */,
+				66CB8B382A795F8E008B6F2D /* bg_iphone14_max.png in Resources */,
 				6698532D26FD06B500C798B0 /* bg_iphone12_mini.png in Resources */,
 				6618E880272C058D00CFC449 /* bg_iphone13.png in Resources */,
 				664CA43422C2450C0094DAD6 /* bg_iphonexr.png in Resources */,
+				66FB1740274E98D60096985A /* bg_iphone13_max.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,8 +369,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZWQWGRSN4T;
 				INFOPLIST_FILE = AVCam/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -384,8 +389,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZWQWGRSN4T;
 				INFOPLIST_FILE = AVCam/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
