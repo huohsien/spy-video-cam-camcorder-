@@ -120,7 +120,7 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 		self.backgroundRecordingID = UIBackgroundTaskInvalid;
 		NSError *error = nil;
 
-		AVCaptureDevice *videoDevice = [AAPLCameraViewController deviceWithMediaType:AVMediaTypeVideo preferringPosition:AVCaptureDevicePositionBack];
+		AVCaptureDevice *videoDevice = [AAPLCameraViewController preferringPosition:AVCaptureDevicePositionBack];
 		AVCaptureDeviceInput *videoDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice error:&error];
 
 		if ( ! videoDeviceInput ) {
@@ -307,8 +307,8 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
             opticalZoomFactor = 2.0;
         } else if ([deviceModel isEqual: @"iPhone15,3"]) {
             NSLog(@"IPHONE 14 Pro Max");
-            [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone14_max"]];
-            [self.previewView setFrame:CGRectMake(330, 514, 64, 64)];
+            [self.backgroundImageView setImage:[UIImage imageNamed:@"bg_iphone15_max"]];
+            [self.previewView setFrame:CGRectMake(133, 306, 64, 64)];
             opticalZoomFactor = 3.0;
         } else if ([deviceModel isEqual: @"iPhone14,8"]) {
             NSLog(@"IPHONE 14 Pro Max");
@@ -798,9 +798,9 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 + (void)setZoomFactor:(double)zoomFactor forDevice:(AVCaptureDevice *)device
 {
     if (@available(iOS 11.0, *)) {
-        //    NSLog(@"minAvailableVideoZoomFactor = %f",  device.minAvailableVideoZoomFactor);
+            NSLog(@"minAvailableVideoZoomFactor = %f",  device.minAvailableVideoZoomFactor);
             if (zoomFactor > device.maxAvailableVideoZoomFactor || zoomFactor < device.minAvailableVideoZoomFactor) {
-                NSLog(@"failed to change zoom factor.so set it to default value 1.0");
+                NSLog(@"failed to change zoom factor.so set it to default value 1.0. Zoom factor = %f", device.minAvailableVideoZoomFactor);
                 zoomFactor = 1.0;
             }
         NSError *error = nil;
@@ -816,11 +816,16 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
     }
 }
 
-+ (AVCaptureDevice *)deviceWithMediaType:(NSString *)mediaType preferringPosition:(AVCaptureDevicePosition)position
++ (AVCaptureDevice *) preferringPosition:(AVCaptureDevicePosition)position
 {
-	NSArray *devices = [AVCaptureDevice devicesWithMediaType:mediaType];
-	AVCaptureDevice *captureDevice = devices.firstObject;
-
+//    NSArray *devices = [AVCaptureDevice devicesWithMediaType:mediaType];
+//    AVCaptureDevice *captureDevice = devices.firstObject;
+    AVCaptureDevice *captureDevice;
+    AVCaptureDeviceDiscoverySession *captureDeviceDiscoverySession = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera]
+                                          mediaType:AVMediaTypeVideo
+                                           position:AVCaptureDevicePositionBack];
+    NSArray *devices = [captureDeviceDiscoverySession devices];
+    
 	for ( AVCaptureDevice *device in devices ) {
 		if ( device.position == position ) {
 			captureDevice = device;
