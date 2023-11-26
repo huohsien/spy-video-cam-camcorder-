@@ -119,8 +119,15 @@ typedef NS_ENUM( NSInteger, AVCamSetupResult ) {
 
 		self.backgroundRecordingID = UIBackgroundTaskInvalid;
 		NSError *error = nil;
-
-		AVCaptureDevice *videoDevice = [AAPLCameraViewController preferringPosition:AVCaptureDevicePositionBack];
+        /*
+        // Try getting the ultra wide-angled lenes
+        AVCaptureDeviceDiscoverySession *captureDeviceDiscoverySession = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInUltraWideCamera] mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionBack];
+        NSArray *videoDevices = [captureDeviceDiscoverySession devices];
+        AVCaptureDevice *videoDevice = [videoDevices lastObject];
+         */
+        
+        AVCaptureDevice *videoDevice = [AAPLCameraViewController preferringPosition:AVCaptureDevicePositionBack];
+        
 		AVCaptureDeviceInput *videoDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice error:&error];
 
 		if ( ! videoDeviceInput ) {
